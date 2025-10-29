@@ -1,0 +1,26 @@
+{
+  "hello": {
+    "textVietnamese": "xin chào",
+    "type": "string",
+    "example": "Hello, how are you?",
+    "createdAt": "2025-10-29T10:00:00Z",
+    "updatedAt": "2025-10-29T10:00:00Z",
+    "transcription": "he-lo"
+  },
+  "book": {
+    "textVietnamese": "quyển sách",
+    "type": "string",
+    "example": "This is a good book.",
+    "createdAt": "2025-10-29T10:00:00Z",
+    "updatedAt": "2025-10-29T10:00:00Z",
+    "transcription": "buk"
+  },
+  "computer": {
+    "textVietnamese": "máy tính",
+    "type": "string",
+    "example": "I use my computer every day.",
+    "createdAt": "2025-10-29T10:00:00Z",
+    "updatedAt": "2025-10-29T10:00:00Z",
+    "transcription": "kəm-pyu-tər"
+  }
+}
