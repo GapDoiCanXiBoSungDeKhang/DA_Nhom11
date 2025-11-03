@@ -3,24 +3,88 @@
     "textVietnamese": "xin chào",
     "type": "string",
     "example": "Hello, how are you?",
-    "createdAt": "2025-10-29T10:00:00Z",
-    "updatedAt": "2025-10-29T10:00:00Z",
+    "createdAt": null,
+    "updatedAt": null,
     "transcription": "he-lo"
   },
   "book": {
     "textVietnamese": "quyển sách",
     "type": "string",
     "example": "This is a good book.",
-    "createdAt": "2025-10-29T10:00:00Z",
-    "updatedAt": "2025-10-29T10:00:00Z",
+    "createdAt": null,
+    "updatedAt": null,
     "transcription": "buk"
   },
   "computer": {
     "textVietnamese": "máy tính",
     "type": "string",
     "example": "I use my computer every day.",
-    "createdAt": "2025-10-29T10:00:00Z",
-    "updatedAt": "2025-10-29T10:00:00Z",
+    "createdAt": null,
+    "updatedAt": null,
     "transcription": "kəm-pyu-tər"
+  },
+  "apple": {
+    "textVietnamese": "quả táo",
+    "type": "noun",
+    "example": "An apple a day keeps the doctor away.",
+    "createdAt": null,
+    "updatedAt": null,
+    "transcription": "ˈæp.əl"
+  },
+  "apply": {
+    "textVietnamese": "áp dụng, nộp đơn",
+    "type": "verb",
+    "example": "You should apply for this job immediately.",
+    "createdAt": null,
+    "updatedAt": null,
+    "transcription": "əˈplaɪ"
+  },
+  "amazing": {
+    "textVietnamese": "tuyệt vời, kinh ngạc",
+    "type": "adjective",
+    "example": "The view from the top was amazing.",
+    "createdAt": null,
+    "updatedAt": null,
+    "transcription": "əˈmeɪ.zɪŋ"
+  },
+  "company": {
+    "textVietnamese": "công ty",
+    "type": "noun",
+    "example": "She works for a large technology company.",
+    "createdAt": null,
+    "updatedAt": null,
+    "transcription": "ˈkʌm.pə.ni"
+  },
+  "firm": {
+    "textVietnamese": "công ty",
+    "type": "noun",
+    "example": "He's a partner in a small accounting firm.",
+    "createdAt": null,
+    "updatedAt": null,
+    "transcription": "fɜːm"
+  },
+  "corporation": {
+    "textVietnamese": "công ty",
+    "type": "noun",
+    "example": "The multinational corporation has offices worldwide.",
+    "createdAt": null,
+    "updatedAt": null,
+    "transcription": "ˌkɔː.pərˈeɪ.ʃən"
+  },
+  "example": {
+    "textVietnamese": "ví dụ",
+    "type": "noun",
+    "example": "This is an example.",
+    "createdAt": null,
+    "updatedAt": null,
+    "transcription": "ɪɡˈzɑːm.pəl"
+  },
+  "orange": {
+    "textVietnamese": "quả cam",
+    "type": "noun",
+    "example": "I bought a fresh orange from the market.",
+    "createdAt": null,
+    "updatedAt": null,
+    "transcription": "ˈɒr.ɪndʒ"
   }
 }

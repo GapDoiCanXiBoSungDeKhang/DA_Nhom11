@@ -3,19 +3,111 @@ package org.example;
 import org.example.controller.DataLoader;
 import org.example.model.WordEnglish;
 
+import java.util.List;
 import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
-        Map<String, WordEnglish> dictionary = DataLoader.loadDictionary();
-        for (Map.Entry<String, WordEnglish> entry : dictionary.entrySet()) {
-            System.out.println(entry.getKey() + " -> " + entry.getValue());
+        //Test không giao diện
+        // Khởi tạo DataLoader. Toàn bộ dữ liệu được tải và Trie được xây dựng tại đây.
+        DataLoader loader = new DataLoader("Vietnamese_english.json");
+        // Bắt đầu kiểm tra tính năng:
+        System.out.println("=========================================");
+        System.out.println("        KIỂM TRA TÍNH NĂNG TỪ ĐIỂN      ");
+        System.out.println("=========================================");
+
+        //Anh-Việt
+        System.out.println("I.KIỂM TRA ANH-VIỆT");
+
+        // Test 1: Tiền tố 'a'
+        String prefix1 = "a";
+        List<String> suggestions1 = loader.getEnglishTrie().searchByPrefix(prefix1);
+        System.out.println("Gợi ý cho prefix '" + prefix1 + "': " + suggestions1);
+
+        // Test 2: Tiền tố 'app'
+        String prefix2 = "app";
+        List<String> suggestions2 = loader.getEnglishTrie().searchByPrefix(prefix2);
+        System.out.println("Gợi ý cho prefix '" + prefix2 + "': " + suggestions2);
+        // Kết quả mong đợi: ["apple", "apply"]
+
+        // Test 3: Tiền tố không tồn tại
+        String prefix3 = "xyz";
+        List<String> suggestions3 = loader.getEnglishTrie().searchByPrefix(prefix3);
+        System.out.println("Gợi ý cho prefix '" + prefix3 + "': " + suggestions3);
+
+        // --- 2. KIỂM TRA TÍNH NĂNG TRA CỨU CHI TIẾT (HashMap) ---
+        System.out.println("\n--- 2. Kiểm tra HashMap ANH-VIỆT (Tra cứu chi tiết) ---");
+        Map<String, WordEnglish> dictionary = loader.getDictionaryData();
+
+        // Test 1: Tra cứu từ 'apple'
+        String word1 = "apple";
+        WordEnglish result1 = dictionary.get(word1);
+        System.out.println("Tra cứu từ '" + word1 + "':");
+        if (result1 != null)
+        {
+            System.out.println("  Nghĩa tiếng Việt: " + result1.getTextVietnamese());
+            System.out.println("  Chi tiết: ");
+            System.out.println("    từ loại: "+result1.getType());
+            System.out.println("    Phiên âm: "+result1.getTranscription());
+            System.out.println("    Câu ví dụ: "+result1.getExample());
         }
-        WordEnglish hello = dictionary.get("hello");
-        if (hello != null) {
-            System.out.println("\nChi tiết từ 'hello':");
-            System.out.println("Nghĩa tiếng Việt: " + hello.getTextVietnamese());
-            System.out.println("Ví dụ: " + hello.getExample());
+        else
+        {
+            System.out.println("  Không tìm thấy từ.");
+        }
+
+        // Test 2 : Tra cứu từ 'computer'
+        String word2 = "computer";
+        WordEnglish result2 = dictionary.get(word2);
+        System.out.println("Tra cứu từ '" + word2 + "':");
+        if (result2 != null)
+        {
+            System.out.println("  Nghĩa tiếng Việt: " + result2.getTextVietnamese());
+        }
+        else
+        {
+            System.out.println("  Không tìm thấy từ.");
+        }
+
+        //VIỆT-ANH
+        System.out.println("\nII.KIỂM TRA ANH-VIỆT");
+
+        // Test 1 kiểm tra tiền tố q
+        String vn_prefix1 = "q";
+        List<String> vn_suggestions1 = loader.getVietnameseTrie().searchByPrefix(vn_prefix1);
+        System.out.println("Gợi ý tiếng Việt cho prefix '" + vn_prefix1 + "': " + vn_suggestions1);
+
+        // Test 2 Kiểm tra tiền tố quả
+        String vn_prefix2 = "quả";
+        List<String> vn_suggestions2 = loader.getVietnameseTrie().searchByPrefix(vn_prefix2);
+        System.out.println("Gợi ý tiếng Việt cho prefix '" + vn_prefix2 + "': " + vn_suggestions2);
+
+        // --- 2. KIỂM TRA TÍNH NĂNG TRA CỨU VIỆT-ANH ---
+        System.out.println("\n--- 2. Kiểm tra HashMap ANH-VIỆT (Tra cứu chi tiết) ---");
+        Map<String, List<String>> dataVietAnh = loader.getVietnameseToEnglishMap();
+        // Test 1: tra cứu từ 'công ty'
+        String word3 = "công ty";
+
+        // Lấy danh sách các từ tiếng Anh có cùng nghĩa tiếng việt với word3
+        List<String> lisEnglishWords = dataVietAnh.get(word3);
+
+        System.out.println("Tra cứu từ '" + word3 + "':");
+        if(lisEnglishWords != null && !lisEnglishWords.isEmpty())
+        {
+            boolean isMultiEnglish = lisEnglishWords.size() > 1;
+            int i=0;
+            for (String englishWord : lisEnglishWords) // Duyệt qua danh sách các từ tiếng anh
+            {
+                WordEnglish result3 = dictionary.get(englishWord);
+                if(isMultiEnglish)
+                    System.out.println("  Nghĩa tiếng Anh thứ " + (++i)+": "+englishWord);
+                else
+                    System.out.println("Nghĩa tiếng Anh: "+englishWord);
+                System.out.println("  Chi tiết: ");
+                System.out.println("    từ loại: "+result1.getType());
+                System.out.println("    Phiên âm: "+result1.getTranscription());
+                System.out.println("    Câu ví dụ: "+result1.getExample());
+            }
         }
     }
 }
