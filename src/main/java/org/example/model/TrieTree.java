@@ -39,6 +39,7 @@ public class TrieTree {
      */
     public List<String> searchByPrefix(String prefix)
     {
+        prefix = prefix.toLowerCase();
         List<String> results = new ArrayList<>();//Tạo ds chứa các từ gợi ý
         TrieNode current = root; // Taọ 1 node rỗng
 
