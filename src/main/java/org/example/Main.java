@@ -9,6 +9,9 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) {
         //Test không giao diện
+
+
+
         // Khởi tạo DataLoader. Toàn bộ dữ liệu được tải và Trie được xây dựng tại đây.
         DataLoader loader = new DataLoader("Vietnamese_english.json");
         // Bắt đầu kiểm tra tính năng:
@@ -25,7 +28,7 @@ public class Main {
         System.out.println("Gợi ý cho prefix '" + prefix1 + "': " + suggestions1);
 
         // Test 2: Tiền tố 'app'
-        String prefix2 = "app";
+        String prefix2 = "appl";
         List<String> suggestions2 = loader.getEnglishTrie().searchByPrefix(prefix2);
         System.out.println("Gợi ý cho prefix '" + prefix2 + "': " + suggestions2);
         // Kết quả mong đợi: ["apple", "apply"]
@@ -34,6 +37,14 @@ public class Main {
         String prefix3 = "xyz";
         List<String> suggestions3 = loader.getEnglishTrie().searchByPrefix(prefix3);
         System.out.println("Gợi ý cho prefix '" + prefix3 + "': " + suggestions3);
+
+        // Test 4: Tiền tố không tồn tại
+        String prefix4 = "A";
+        List<String> suggestions4 = loader.getEnglishTrie().searchByPrefix(prefix4);
+        System.out.println("Gợi ý cho prefix '" + prefix4 + "': " + suggestions4);
+
+
+        // submit tiếng anh
 
         // --- 2. KIỂM TRA TÍNH NĂNG TRA CỨU CHI TIẾT (HashMap) ---
         System.out.println("\n--- 2. Kiểm tra HashMap ANH-VIỆT (Tra cứu chi tiết) ---");
@@ -68,6 +79,9 @@ public class Main {
         {
             System.out.println("  Không tìm thấy từ.");
         }
+        // kết thúc tiếng anh
+
+
 
         //VIỆT-ANH
         System.out.println("\nII.KIỂM TRA ANH-VIỆT");
@@ -82,8 +96,16 @@ public class Main {
         List<String> vn_suggestions2 = loader.getVietnameseTrie().searchByPrefix(vn_prefix2);
         System.out.println("Gợi ý tiếng Việt cho prefix '" + vn_prefix2 + "': " + vn_suggestions2);
 
+
+
+
+
         // --- 2. KIỂM TRA TÍNH NĂNG TRA CỨU VIỆT-ANH ---
         System.out.println("\n--- 2. Kiểm tra HashMap ANH-VIỆT (Tra cứu chi tiết) ---");
+
+
+        // submit tiếng Việt Nam
+
         Map<String, List<String>> dataVietAnh = loader.getVietnameseToEnglishMap();
         // Test 1: tra cứu từ 'công ty'
         String word3 = "công ty";
@@ -109,5 +131,7 @@ public class Main {
                 System.out.println("    Câu ví dụ: "+result1.getExample());
             }
         }
+
+        // kết thúc
     }
 }

@@ -3,7 +3,7 @@ package org.example.controller;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import org.example.model.TrieTree;
+import org.example.logic.TrieTree;
 import org.example.model.WordEnglish;
 
 import java.io.InputStreamReader;
@@ -26,6 +26,12 @@ public class DataLoader {
     public DataLoader(String jsonFileName)
     {
         loadData(jsonFileName);
+    }
+
+    public void loadList(String jsonFileName)
+    {
+        Gson gson = new Gson();
+        // duyệt danh sách cây dị phân theo thứ tự alphabet
     }
 
     public void loadData(String jsonFileName) {

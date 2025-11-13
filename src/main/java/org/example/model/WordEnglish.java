@@ -39,12 +39,12 @@ public class WordEnglish {
         return textVietnamese;
     }
 
-    public String getType() {
-        return type;
-    }
-
     public String getExample() {
         return example;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public String getCreatedAt() {

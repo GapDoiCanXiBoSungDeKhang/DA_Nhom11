@@ -1,15 +1,14 @@
-package org.example.model;
+package org.example.logic;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class TrieNode {
-
     private final Map<Character, TrieNode> children = new HashMap<Character, TrieNode>(); //children sẽ lưu trữ 1 ký và 1 node tiếp theo giống Node -> link
     // Đánh dấu xem có phải là kết thúc của một từ hợp lệ hay không.
     private boolean isEndOfWord;
 
-    public  TrieNode()
+    public TrieNode()
     {
         isEndOfWord = false;
     }
@@ -19,6 +18,7 @@ public class TrieNode {
     {
         return children;
     }
+
     public boolean isEndOfWord()
     {
         return isEndOfWord;

@@ -1,8 +1,7 @@
-package org.example.model;
+package org.example.logic;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 public class TrieTree {
