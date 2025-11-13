@@ -1,90 +1,74 @@
 {
-  "hello": {
-    "textVietnamese": "xin chào",
-    "type": "string",
-    "example": "Hello, how are you?",
-    "createdAt": null,
-    "updatedAt": null,
-    "transcription": "he-lo"
+  "orange": {
+    "textVietnamese": "quả cam",
+    "type": "noun",
+    "example": "I bought a fresh orange from the market.",
+    "transcription": "ˈɒr.ɪndʒ"
   },
-  "book": {
-    "textVietnamese": "quyển sách",
-    "type": "string",
-    "example": "This is a good book.",
-    "createdAt": null,
-    "updatedAt": null,
-    "transcription": "buk"
-  },
-  "computer": {
-    "textVietnamese": "máy tính",
-    "type": "string",
-    "example": "I use my computer every day.",
-    "createdAt": null,
-    "updatedAt": null,
-    "transcription": "kəm-pyu-tər"
+  "keyboard": {
+    "textVietnamese": "bàn phím",
+    "type": "noun",
+    "example": "I bought a new keyboard for my computer.",
+    "transcription": "ˈkiː.bɔːd"
   },
   "apple": {
     "textVietnamese": "quả táo",
     "type": "noun",
     "example": "An apple a day keeps the doctor away.",
-    "createdAt": null,
-    "updatedAt": null,
     "transcription": "ˈæp.əl"
-  },
-  "apply": {
-    "textVietnamese": "áp dụng, nộp đơn",
-    "type": "verb",
-    "example": "You should apply for this job immediately.",
-    "createdAt": null,
-    "updatedAt": null,
-    "transcription": "əˈplaɪ"
   },
   "amazing": {
     "textVietnamese": "tuyệt vời, kinh ngạc",
     "type": "adjective",
     "example": "The view from the top was amazing.",
-    "createdAt": null,
-    "updatedAt": null,
     "transcription": "əˈmeɪ.zɪŋ"
-  },
-  "company": {
-    "textVietnamese": "công ty",
-    "type": "noun",
-    "example": "She works for a large technology company.",
-    "createdAt": null,
-    "updatedAt": null,
-    "transcription": "ˈkʌm.pə.ni"
   },
   "firm": {
     "textVietnamese": "công ty",
     "type": "noun",
     "example": "He's a partner in a small accounting firm.",
-    "createdAt": null,
-    "updatedAt": null,
     "transcription": "fɜːm"
+  },
+  "apply": {
+    "textVietnamese": "áp dụng, nộp đơn",
+    "type": "verb",
+    "example": "You should apply for this job immediately.",
+    "transcription": "əˈplaɪ"
+  },
+  "book": {
+    "textVietnamese": "quyển sách",
+    "type": "string",
+    "example": "This is a good book.",
+    "transcription": "buk"
   },
   "corporation": {
     "textVietnamese": "công ty",
     "type": "noun",
     "example": "The multinational corporation has offices worldwide.",
-    "createdAt": null,
-    "updatedAt": null,
     "transcription": "ˌkɔː.pərˈeɪ.ʃən"
+  },
+  "company": {
+    "textVietnamese": "công ty",
+    "type": "noun",
+    "example": "She works for a large technology company.",
+    "transcription": "ˈkʌm.pə.ni"
+  },
+  "hello": {
+    "textVietnamese": "xin chào",
+    "type": "string",
+    "example": "Hello, how are you?",
+    "transcription": "he-lo"
+  },
+  "pencil": {
+    "textVietnamese": "viết chì",
+    "type": "noun",
+    "example": "He drew with a pencil.",
+    "transcription": "ˈpen.səl"
   },
   "example": {
     "textVietnamese": "ví dụ",
     "type": "noun",
     "example": "This is an example.",
-    "createdAt": null,
-    "updatedAt": null,
     "transcription": "ɪɡˈzɑːm.pəl"
-  },
-  "orange": {
-    "textVietnamese": "quả cam",
-    "type": "noun",
-    "example": "I bought a fresh orange from the market.",
-    "createdAt": null,
-    "updatedAt": null,
-    "transcription": "ˈɒr.ɪndʒ"
   }
 }

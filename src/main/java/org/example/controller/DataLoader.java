@@ -6,9 +6,9 @@ import com.google.gson.reflect.TypeToken;
 import org.example.logic.TrieTree;
 import org.example.model.WordEnglish;
 
-import java.io.InputStreamReader;
-import java.io.Reader;
+import java.io.*;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -80,6 +80,22 @@ public class DataLoader {
         } catch (Exception e) {
             System.err.println("Lỗi khi tải dữ liệu từ file JSON: " + jsonFileName);//Thông báo để test
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * Lưu dữ liệu hiện tại từ dictionaryData vào file JSON
+     */
+    public void saveDataToJson(String jsonFileName) {
+        Gson gson = new Gson();
+        try (Writer writer = new OutputStreamWriter(
+                new FileOutputStream("src/main/resources/" + jsonFileName), StandardCharsets.UTF_8)) {
+
+            gson.toJson(this.dictionaryData, writer);
+            System.out.println("✅ Đã lưu dữ liệu vào file JSON!");
+
+        } catch (Exception e) {
+            System.err.println("❌ Lỗi khi lưu file JSON: " + e.getMessage());
         }
     }
 
