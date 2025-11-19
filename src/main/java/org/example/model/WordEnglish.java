@@ -8,11 +8,17 @@ public class WordEnglish {
     private String updatedAt;
     private String transcription;
 
-    public WordEnglish()
+    public WordEnglish() 
     {
-        //Tạo trước đối tượng không cần khởi tạo giá trị gì
+        
     }
 
+    public WordEnglish(String type, String transcription, String meaning, String example) {
+    this.type = type;
+    this.transcription = transcription;
+    this.textVietnamese = meaning;
+    this.example = example;
+    }
     //Setters
     public void setTextVietnamese(String textVietnamese) {
         this.textVietnamese = textVietnamese;
