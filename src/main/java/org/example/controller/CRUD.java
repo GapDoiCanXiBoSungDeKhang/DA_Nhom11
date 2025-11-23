@@ -1,6 +1,5 @@
-package org.example.logic;
+package org.example.controller;
 
-import org.example.controller.DataLoader;
 import org.example.model.WordEnglish;
 
 import java.util.Map;

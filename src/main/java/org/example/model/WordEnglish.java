@@ -7,6 +7,7 @@ public class WordEnglish {
     private String createdAt;
     private String updatedAt;
     private String transcription;
+    private boolean favourite;
 
     public WordEnglish()
     {
@@ -17,12 +18,14 @@ public class WordEnglish {
     public void setTextVietnamese(String textVietnamese) {
         this.textVietnamese = textVietnamese;
     }
-
     public void setType(String type) {
         this.type = type;
     }
     public void setExample(String example) {
         this.example = example;
+    }
+    public void setFavourite(boolean favourite) {
+        this.favourite = favourite;
     }
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
@@ -41,6 +44,10 @@ public class WordEnglish {
 
     public String getExample() {
         return example;
+    }
+
+    public boolean isFavourite() {
+        return favourite;
     }
 
     public String getType() {

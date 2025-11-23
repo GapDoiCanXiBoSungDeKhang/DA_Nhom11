@@ -76,13 +76,13 @@ public class DataLoader {
     public void saveDataToJson(String jsonFileName) {
         Gson gson = new Gson();
         try (Writer writer = new OutputStreamWriter(
-                new FileOutputStream("src/main/resources/" + jsonFileName), StandardCharsets.UTF_8)) {
+                new FileOutputStream("src/main/resources/data/" + jsonFileName), StandardCharsets.UTF_8)) {
 
             gson.toJson(this.dictionaryData, writer);
-            System.out.println("✅ Đã lưu dữ liệu vào file JSON!");
+            System.out.println("Đã lưu dữ liệu vào file JSON!");
 
         } catch (Exception e) {
-            System.err.println("❌ Lỗi khi lưu file JSON: " + e.getMessage());
+            System.err.println("Lỗi khi lưu file JSON: " + e.getMessage());
         }
     }
 

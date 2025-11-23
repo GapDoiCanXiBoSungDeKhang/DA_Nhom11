@@ -1,7 +1,7 @@
 package org.example;
 
 import org.example.controller.DataLoader;
-import org.example.logic.CRUD;
+import org.example.controller.CRUD;
 import org.example.model.WordEnglish;
 
 import java.util.List;
@@ -148,9 +148,9 @@ public class Main {
 //
 //        crud.addWord("keyboard", newWord);
 
-//        // Sửa
+        // Sửa
 //        WordEnglish updateWord = new WordEnglish();
-//        updateWord.setTextVietnamese("viết chì");
+//        updateWord.setTextVietnamese("bút chì");
 //        updateWord.setType("noun");
 //        updateWord.setExample("He drew with a pencil.");
 //        updateWord.setTranscription("ˈpen.səl");
@@ -158,22 +158,21 @@ public class Main {
 //        crud.updateWord("pencil", updateWord);
 //
 //        // Xóa
-//        crud.deleteWord("computer");
-
-        WordEnglish readWord = crud.readWord("keyboard");
-
-        if (readWord != null) {
-            System.out.println("Từ tiếng Anh: " + "keyboard");
-            System.out.println("Nghĩa tiếng Việt: " + readWord.getTextVietnamese());
-            System.out.println("Loại từ: " + readWord.getType());
-            System.out.println("Ví dụ: " + readWord.getExample());
-            System.out.println("Phiên âm: " + readWord.getTranscription());
-        } else {
-            System.out.println("Không tìm thấy từ 'keyboard' trong từ điển.");
-        }
+//        crud.deleteWord("pencil");
+//
+//        WordEnglish readWord = crud.readWord("keyboard");
+//
+//        if (readWord != null) {
+//            System.out.println("Từ tiếng Anh: " + "keyboard");
+//            System.out.println("Nghĩa tiếng Việt: " + readWord.getTextVietnamese());
+//            System.out.println("Loại từ: " + readWord.getType());
+//            System.out.println("Ví dụ: " + readWord.getExample());
+//            System.out.println("Phiên âm: " + readWord.getTranscription());
+//        } else {
+//            System.out.println("Không tìm thấy từ 'keyboard' trong từ điển.");
+//        }
 
         // Lưu thay đổi ra file
         crud.saveChanges("Vietnamese_english.json");
-
     }
 }

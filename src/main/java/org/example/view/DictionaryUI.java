@@ -46,7 +46,7 @@ public class DictionaryUI extends JFrame {
     // CONSTRUCTOR
     public DictionaryUI() {
 
-        controller = new DataLoader("Vietnamese_english.json"); // LOAD FROM RESOURCES ✔
+        controller = new DataLoader("data/Vietnamese_english.json"); // LOAD FROM RESOURCES ✔
 
         setTitle("English ↔ Vietnamese Dictionary");
         setSize(1000, 650);
