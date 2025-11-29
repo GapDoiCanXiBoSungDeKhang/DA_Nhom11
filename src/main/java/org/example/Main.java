@@ -1,7 +1,6 @@
 package org.example;
 
 import org.example.controller.DataLoader;
-import org.example.controller.CRUD;
 import org.example.model.WordEnglish;
 
 import java.util.List;
@@ -173,6 +172,6 @@ public class Main {
 //        }
 
         // Lưu thay đổi ra file
-        crud.saveChanges("Vietnamese_english.json");
+//        crud.saveChanges("Vietnamese_english.json");
     }
 }
