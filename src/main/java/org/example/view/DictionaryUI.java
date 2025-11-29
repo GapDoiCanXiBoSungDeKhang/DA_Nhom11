@@ -2,7 +2,6 @@ package org.example.view;
 
 import org.example.controller.DataLoader;
 import org.example.model.WordEnglish;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -26,7 +25,6 @@ public class DictionaryUI extends JFrame {
     private final DataLoader controller;
 
     private JTextField searchField;
-    private JButton searchButton;
 
     private JList<String> suggestionList;
     private DefaultListModel<String> listModel;
@@ -46,7 +44,6 @@ public class DictionaryUI extends JFrame {
     // CONSTRUCTOR
     public DictionaryUI() {
 
-        controller = new DataLoader("data/Vietnamese_english.json"); // LOAD FROM RESOURCES ✔
 
         setTitle("English ↔ Vietnamese Dictionary");
         setSize(1000, 650);
@@ -56,22 +53,10 @@ public class DictionaryUI extends JFrame {
         getContentPane().setBackground(macBg);
 
         // SEARCH BAR 
-        searchField = new SearchTextField();
-        searchButton = createSearchButton();
 
         JPanel searchPanel = new JPanel(new BorderLayout());
         searchPanel.setBackground(macBg);
-        searchPanel.add(searchField, BorderLayout.CENTER);
-        searchPanel.add(searchButton, BorderLayout.EAST);
-
         // MODE SWITCH
-        JToggleButton modeSwitch = new JToggleButton("English → Vietnamese");
-        modeSwitch.setFont(new Font("SansSerif", Font.BOLD, 14));
-        modeSwitch.setBackground(macBlue);
-        modeSwitch.setForeground(Color.WHITE);
-        modeSwitch.setFocusPainted(false);
-        modeSwitch.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
-
         modeSwitch.addActionListener(e -> {
             isEnglishMode = !isEnglishMode;
             modeSwitch.setText(isEnglishMode ? "English → Vietnamese" : "Vietnamese → English");
@@ -80,7 +65,6 @@ public class DictionaryUI extends JFrame {
         });
 
         JPanel topPanel = new JPanel(new BorderLayout(20, 20));
-        topPanel.setBorder(BorderFactory.createEmptyBorder(15, 15, 10, 15));
         topPanel.setBackground(macBg);
         topPanel.add(searchPanel, BorderLayout.CENTER);
         topPanel.add(modeSwitch, BorderLayout.EAST);
@@ -94,10 +78,7 @@ public class DictionaryUI extends JFrame {
         suggestionList.setSelectionBackground(macLightBlue);
 
         JScrollPane scrollList = new JScrollPane(suggestionList);
-        scrollList.setPreferredSize(new Dimension(260, 0));
-        scrollList.setBorder(BorderFactory.createLineBorder(border, 1, true));
 
-        add(scrollList, BorderLayout.WEST);
 
         // DETAILS PANEL
         JPanel detail = new JPanel();
@@ -106,21 +87,15 @@ public class DictionaryUI extends JFrame {
         detail.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
         typeLabel = new JLabel("Type: ");
-        typeLabel.setFont(new Font("SansSerif", Font.BOLD, 18));
 
         phoneticLabel = new JLabel("Phonetic: ");
-        phoneticLabel.setFont(new Font("SansSerif", Font.ITALIC, 16));
 
-        meaningArea = createCard("Meaning");
-        exampleArea = createCard("Example");
 
         detail.add(typeLabel);
         detail.add(Box.createVerticalStrut(5));
         detail.add(phoneticLabel);
         detail.add(Box.createVerticalStrut(10));
-        detail.add(meaningArea);
         detail.add(Box.createVerticalStrut(15));
-        detail.add(exampleArea);
 
         add(detail, BorderLayout.CENTER);
 
@@ -128,8 +103,6 @@ public class DictionaryUI extends JFrame {
         searchField.addKeyListener(new KeyAdapter() {
             @Override public void keyReleased(KeyEvent e) { updateSuggestions(); }
         });
-
-        searchButton.addActionListener(e -> updateSuggestions());
 
         suggestionList.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
@@ -142,36 +115,13 @@ public class DictionaryUI extends JFrame {
     }
 
     //CREATE SEARCH BUTTON (LOAD ICON CORRECTLY) 
-    private JButton createSearchButton() {
-        JButton btn = new JButton();
-
-        // Load icon from resources ✔
-        ImageIcon icon = new ImageIcon(getClass().getResource("/icons/search.png"));
-        Image scaled = icon.getImage().getScaledInstance(28, 28, Image.SCALE_SMOOTH);
-        btn.setIcon(new ImageIcon(scaled));
-
-        btn.setBackground(Color.WHITE);
-        btn.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
-        btn.setFocusable(false);
-        btn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-
-        return btn;
-    }
-
     //  CARD TEXT AREA 
-    private JTextArea createCard(String title) {
         JTextArea area = new JTextArea();
         area.setEditable(false);
         area.setFont(new Font("SansSerif", Font.PLAIN, 16));
         area.setLineWrap(true);
         area.setWrapStyleWord(true);
 
-        area.setBorder(BorderFactory.createTitledBorder(
-                BorderFactory.createLineBorder(border, 1, true),
-                title
-        ));
-        area.setBackground(cardBg);
-        return area;
     }
 
     // SEARCH UPDATE 
