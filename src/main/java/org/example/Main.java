@@ -136,7 +136,7 @@ public class Main {
 
         System.out.println("\n--- 3. CRUD(thêm, xóa, chỉnh sửa, xem)) ---");
 
-        CRUD crud = new CRUD(loader);
+        // CRUD crud = new CRUD(loader);
 
         // Thêm từ mới
 //        WordEnglish newWord = new WordEnglish();
