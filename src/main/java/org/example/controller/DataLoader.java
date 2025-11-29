@@ -27,10 +27,6 @@ public class DataLoader {
         loadData(jsonFileName);
     }
 
-    public void loadList(String jsonFileName) {
-        // chưa dùng
-    }
-
     public void loadData(String jsonFileName) {
         Gson gson = new Gson();
         Type mapType = new TypeToken<Map<String, WordEnglish>>() {}.getType();

@@ -2,11 +2,13 @@ package org.example.view;
 
 import org.example.controller.DataLoader;
 import org.example.model.WordEnglish;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.Map;
+
 public class WordManagerUI extends javax.swing.JFrame {
-    
+
     private final DataLoader controller;
 
     private JList<String> wordList;
@@ -14,8 +16,9 @@ public class WordManagerUI extends javax.swing.JFrame {
 
     private JTextField fieldWord, fieldType, fieldPhonetic;
     private JTextArea fieldMeaning, fieldExample;
+
     public WordManagerUI() {
-   this.controller = new DataLoader("data/Vietnamese_english.json");
+        this.controller = new DataLoader("data/Vietnamese_english.json");
 
         setTitle("Word Manager - Add / Edit / Delete Words");
         setSize(900, 600);
@@ -80,8 +83,8 @@ public class WordManagerUI extends javax.swing.JFrame {
         btnUpdate.addActionListener(e -> updateWord());
         btnDelete.addActionListener(e -> deleteWord());
         btnSave.addActionListener(e -> {
-        controller.saveDataToJson("data/Vietnamese_english.json");
-        JOptionPane.showMessageDialog(this, "Saved to JSON successfully!");
+            controller.saveDataToJson("Vietnamese_english.json");
+            JOptionPane.showMessageDialog(this, "Saved to JSON successfully!");
         });
     }
 
@@ -129,14 +132,14 @@ public class WordManagerUI extends javax.swing.JFrame {
             return;
         }
 
-        controller.getDictionaryData().put(word, 
-                new WordEnglish(
+        controller.getDictionaryData().put(word,
+            new WordEnglish(
                 fieldType.getText(),
                 fieldPhonetic.getText(),
                 fieldMeaning.getText(),
                 fieldExample.getText()
-        )
-       );
+            )
+        );
 
         listModel.addElement(word);
         JOptionPane.showMessageDialog(this, "Added successfully!");
@@ -184,12 +187,12 @@ public class WordManagerUI extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 300, Short.MAX_VALUE)
         );
 
         pack();
@@ -200,6 +203,6 @@ public class WordManagerUI extends javax.swing.JFrame {
     }
 }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    // End of variables declaration//GEN-END:variables
+// Variables declaration - do not modify//GEN-BEGIN:variables
+// End of variables declaration//GEN-END:variables
 

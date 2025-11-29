@@ -1,5 +1,8 @@
 package org.example.model;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class WordEnglish {
     private String textVietnamese;
     private String type;
@@ -9,36 +12,43 @@ public class WordEnglish {
     private String transcription;
     private boolean favourite;
 
-    public WordEnglish() 
-    {
-        
-    }
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
     public WordEnglish(String type, String transcription, String meaning, String example) {
-    this.type = type;
-    this.transcription = transcription;
-    this.textVietnamese = meaning;
-    this.example = example;
+        this.type = type;
+        this.transcription = transcription;
+        this.textVietnamese = meaning;
+        this.example = example;
+        this.favourite = false;
+        this.createdAt = LocalDateTime.now().format(formatter);
+        this.updatedAt = LocalDateTime.now().format(formatter);
     }
+
     //Setters
     public void setTextVietnamese(String textVietnamese) {
         this.textVietnamese = textVietnamese;
     }
+
     public void setType(String type) {
         this.type = type;
     }
+
     public void setExample(String example) {
         this.example = example;
     }
+
     public void setFavourite(boolean favourite) {
         this.favourite = favourite;
     }
+
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
+
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
     }
+
     public void setTranscription(String transcription) {
         this.transcription = transcription;
     }
@@ -70,13 +80,5 @@ public class WordEnglish {
 
     public String getTranscription() {
         return transcription;
-    }
-
-    @Override
-    public String toString() {
-        return String.format(
-                "VN: %s | Type: %s | Example: %s | Transcription: %s",
-                textVietnamese, type, example, transcription
-        );
     }
 }
