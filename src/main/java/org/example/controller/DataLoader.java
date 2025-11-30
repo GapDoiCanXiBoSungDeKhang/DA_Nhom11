@@ -86,6 +86,20 @@ public class DataLoader {
         return this.dictionaryData;
     }
 
+    // duyệt theo tiêu chí tìm kiếm các từ đã lưu
+    public List<WordEnglish> loadDataFavourite(Map<String, WordEnglish> words) {
+        List<WordEnglish> favourites = new ArrayList<>();
+
+        for (WordEnglish w : words.values()) {
+            if (w.isFavourite()) {
+                favourites.add(w);
+            }
+        }
+
+        return favourites;
+    }
+
+
     public TrieTree getEnglishTrie() {
         return this.englishTrie;
     }
