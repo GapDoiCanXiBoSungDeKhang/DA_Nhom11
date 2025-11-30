@@ -2,9 +2,11 @@ package org.example;
 
 import org.example.controller.DataLoader;
 import org.example.model.WordEnglish;
+import org.example.logic.TTS;
 
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
     public static void main(String[] args) {
@@ -173,5 +175,18 @@ public class Main {
 
         // Lưu thay đổi ra file
 //        crud.saveChanges("Vietnamese_english.json");
+        // --- 3. KIỂM TRA TÍNH NĂNG TTS ĐỂ ĐỌC TỪ VỰNG ---
+        System.out.println("\n--- 3. Kiểm tra tính năng TTS để đọc từ vựng ---");
+        TTS.init();
+        String testWord = "Here is the passage to test the TTS feature. If you can hear this then the feature has been added successfully";
+        System.out.println("Đoạn test: " + testWord);
+        TTS.speak(testWord);
+
+        //Tạm dừng hàm main để nghe giọng đọc để test
+        try {
+            TimeUnit.SECONDS.sleep(15);
+        } catch (InterruptedException ignored) {}
+
+        TTS.close();
     }
 }
