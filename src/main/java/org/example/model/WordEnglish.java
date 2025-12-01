@@ -91,4 +91,17 @@ public class WordEnglish {
     public String getLastViewedAt() {
         return lastViewedAt;
     }
+
+    public long getLastViewedTimestamp() {
+        if (lastViewedAt == null || lastViewedAt.isEmpty()) {
+            return 0; // nghĩa là chưa từng xem
+        }
+
+        try {
+            return java.time.Instant.parse(lastViewedAt).toEpochMilli();
+        } catch (Exception e) {
+            return 0; // nếu format lỗi
+        }
+    }
+
 }

@@ -6,7 +6,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/smɑːl/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt":""
   },
   "door": {
     "textVietnamese": "cánh cửa",
@@ -15,7 +16,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/dɔːr/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "parent": {
     "textVietnamese": "cha mẹ",
@@ -24,7 +26,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/ˈper.ənt/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "quick": {
     "textVietnamese": "nhanh",
@@ -33,7 +36,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/kwɪk/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "happy": {
     "textVietnamese": "vui vẻ",
@@ -42,7 +46,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/ˈhæp.i/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "mouse": {
     "textVietnamese": "con chuột",
@@ -51,7 +56,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/maʊs/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "tea": {
     "textVietnamese": "trà",
@@ -60,7 +66,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/tiː/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "music": {
     "textVietnamese": "âm nhạc",
@@ -69,7 +76,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/ˈmjuː.zɪk/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "road": {
     "textVietnamese": "con đường",
@@ -78,7 +86,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/roʊd/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "school": {
     "textVietnamese": "trường học",
@@ -87,7 +96,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/skuːl/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "friend": {
     "textVietnamese": "bạn bè",
@@ -96,7 +106,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/frend/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "fire": {
     "textVietnamese": "lửa",
@@ -105,7 +116,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/faɪr/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "hat": {
     "textVietnamese": "cái mũ",
@@ -114,7 +126,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/hæt/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "energy": {
     "textVietnamese": "năng lượng",
@@ -123,7 +136,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/ˈen.ɚ.dʒi/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "banana": {
     "textVietnamese": "quả chuối",
@@ -132,7 +146,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/bəˈnæn.ə/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "sky": {
     "textVietnamese": "bầu trời",
@@ -141,7 +156,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/skaɪ/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "rain": {
     "textVietnamese": "mưa",
@@ -150,7 +166,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/reɪn/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "glass": {
     "textVietnamese": "ly thủy tinh",
@@ -159,7 +176,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/ɡlæs/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "king": {
     "textVietnamese": "nhà vua",
@@ -168,7 +186,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/kɪŋ/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "nigger": {
     "textVietnamese": "none",
@@ -177,7 +196,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6515377",
     "transcription": "none",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "island": {
     "textVietnamese": "hòn đảo",
@@ -186,7 +206,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/ˈaɪ.lənd/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "planet": {
     "textVietnamese": "hành tinh",
@@ -195,7 +216,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/ˈplæn.ɪt/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "milk": {
     "textVietnamese": "sữa",
@@ -204,7 +226,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/mɪlk/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "tree": {
     "textVietnamese": "cây",
@@ -213,7 +236,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/triː/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "tiger": {
     "textVietnamese": "hổ",
@@ -222,7 +246,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/ˈtaɪ.ɡɚ/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "easy": {
     "textVietnamese": "dễ dàng",
@@ -231,7 +256,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/ˈiː.zi/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "water": {
     "textVietnamese": "nước",
@@ -240,7 +266,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/ˈwɑː.t̬ɚ/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "heart": {
     "textVietnamese": "trái tim",
@@ -249,7 +276,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/hɑːrt/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "lion": {
     "textVietnamese": "sư tử",
@@ -258,7 +286,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/ˈlaɪ.ən/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "knife": {
     "textVietnamese": "con dao",
@@ -267,7 +296,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/naɪf/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "moon": {
     "textVietnamese": "mặt trăng",
@@ -276,7 +306,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/muːn/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "ocean": {
     "textVietnamese": "đại dương",
@@ -285,7 +316,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/ˈoʊ.ʃən/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   },
   "dream": {
     "textVietnamese": "giấc mơ",
@@ -294,6 +326,7 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/driːm/",
-    "favourite": false
+    "favourite": false,
+    "lastViewedAt": "2025-11-29T21:25:56.6503729"
   }
 }

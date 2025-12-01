@@ -1,7 +1,10 @@
 package org.example;
 
+import org.example.logic.MergerSortKeyMap;
+import org.example.model.WordEnglish;
 import org.example.ulti.TTS;
 
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
@@ -172,17 +175,54 @@ public class Main {
         // Lưu thay đổi ra file
 //        crud.saveChanges("Vietnamese_english.json");
         // --- 3. KIỂM TRA TÍNH NĂNG TTS ĐỂ ĐỌC TỪ VỰNG ---
-        System.out.println("\n--- 3. Kiểm tra tính năng TTS để đọc từ vựng ---");
-        TTS.init();
-        String testWord = "Here is the passage to test the TTS feature. If you can hear this then the feature has been added successfully";
-        System.out.println("Đoạn test: " + testWord);
-        TTS.speak(testWord);
+//        System.out.println("\n--- 3. Kiểm tra tính năng TTS để đọc từ vựng ---");
+//        TTS.init();
+//        String testWord = "Here is the passage to test the TTS feature. If you can hear this then the feature has been added successfully";
+//        System.out.println("Đoạn test: " + testWord);
+//        TTS.speak(testWord);
+//
+//        //Tạm dừng hàm main để nghe giọng đọc để test
+//        try {
+//            TimeUnit.SECONDS.sleep(15);
+//        } catch (InterruptedException ignored) {}
+//
+//        TTS.close();
 
-        //Tạm dừng hàm main để nghe giọng đọc để test
-        try {
-            TimeUnit.SECONDS.sleep(15);
-        } catch (InterruptedException ignored) {}
+        MergerSortKeyMap record = new MergerSortKeyMap("data/Vietnamese_english.json");
+//
+//        Map<String, WordEnglish> sortedWords = record.getListOfWords();
+//
+//        // Vòng lặp in ra thông tin từng từ
+//        for (Map.Entry<String, WordEnglish> entry : sortedWords.entrySet()) {
+//            String word = entry.getKey();
+//            WordEnglish info = entry.getValue();
+//
+//            System.out.println("Word: " + word);
+//            System.out.println("Meaning: " + info.getTextVietnamese());
+//            System.out.println("Type: " + info.getType());
+//            System.out.println("Example: " + info.getExample());
+//            System.out.println("Transcription: " + info.getTranscription());
+//            System.out.println("Favourite: " + info.isFavourite());
+//            System.out.println("Created At: " + info.getCreatedAt());
+//            System.out.println("Updated At: " + info.getUpdatedAt());
+//            System.out.println("---------------------------");
+//        }
 
-        TTS.close();
+        Map<String, WordEnglish> sortedWords2 = record.sortByLastViewedAt();
+        for (Map.Entry<String, WordEnglish> entry : sortedWords2.entrySet()) {
+            String word = entry.getKey();
+            WordEnglish info = entry.getValue();
+
+            System.out.println("Word: " + word);
+            System.out.println("Meaning: " + info.getTextVietnamese());
+            System.out.println("Type: " + info.getType());
+            System.out.println("Example: " + info.getExample());
+            System.out.println("Transcription: " + info.getTranscription());
+            System.out.println("Favourite: " + info.isFavourite());
+            System.out.println("Created At: " + info.getCreatedAt());
+            System.out.println("Updated At: " + info.getUpdatedAt());
+            System.out.println("Last Viewed At: " + info.getLastViewedAt());
+            System.out.println("----------------------------");
+        }
     }
 }
