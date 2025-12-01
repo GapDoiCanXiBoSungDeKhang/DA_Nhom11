@@ -9,6 +9,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.border.Border;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class DictionaryUI extends JFrame {
     class RoundedListPanel extends JPanel {
@@ -235,7 +237,7 @@ public class DictionaryUI extends JFrame {
     private DefaultListModel<String> listModel;
 
     private JTextArea meaningArea, exampleArea;
-    private JLabel typeLabel, phoneticLabel;
+    private JLabel typeLabel, phoneticLabel, wordLabel;
 
     private boolean isEnglishMode = true;
 
@@ -322,8 +324,14 @@ public class DictionaryUI extends JFrame {
         detail.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
         detail.setAlignmentX(Component.LEFT_ALIGNMENT);
 
+        // 1. TẠO WORD LABEL (TỪ VỰNG TO Ở TRÊN CÙNG)
+        wordLabel = new JLabel("");
+        wordLabel.setFont(new Font("SansSerif", Font.BOLD, 28)); // Font to (size 24)
+        wordLabel.setForeground(macBlue); // Màu xanh
+        wordLabel.setAlignmentX(Component.LEFT_ALIGNMENT); // Căn trái
+
         typeLabel = new JLabel("Type: ");
-        typeLabel.setFont(new Font("SansSerif", Font.BOLD, 22));
+        typeLabel.setFont(new Font("SansSerif", Font.PLAIN, 20));
         typeLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         phoneticLabel = new JLabel("Phonetic: ");
@@ -339,6 +347,8 @@ public class DictionaryUI extends JFrame {
         meaningCard.panel.setAlignmentX(Component.LEFT_ALIGNMENT);
         exampleCard.panel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
+        detail.add(wordLabel);
+        detail.add(Box.createVerticalStrut(10));
         detail.add(typeLabel);
         detail.add(Box.createVerticalStrut(5));
         detail.add(phoneticLabel);
@@ -417,6 +427,7 @@ public class DictionaryUI extends JFrame {
         WordEnglish w = controller.getDictionaryData().get(word);
         if (w == null) return;
 
+        wordLabel.setText(word);
         typeLabel.setText("Type: " + w.getType());
         phoneticLabel.setText("Phonetic: " + w.getTranscription());
         meaningArea.setText(w.getTextVietnamese());
@@ -426,20 +437,75 @@ public class DictionaryUI extends JFrame {
     private void showVietnameseWord(String vn) {
         clearDetail();
 
+//        var list = controller.getVietnameseToEnglishMap().get(vn);
+//        if (list == null) return;
+//
+//        StringBuilder sb = new StringBuilder();
+//        for (String eng : list) {
+//            WordEnglish w = controller.getDictionaryData().get(eng);
+//            sb.append("• ").append(eng).append("\n");
+//            sb.append("   Type: ").append(w.getType()).append("\n");
+//            sb.append("   Phonetic: ").append(w.getTranscription()).append("\n");
+//            sb.append("   Example: ").append(w.getExample()).append("\n\n");
+//
+//        }
+//
+//        meaningArea.setText("Vietnamese: " + vn);
+//        exampleArea.setText(sb.toString());
+        if (wordLabel != null)
+            wordLabel.setText(vn);
+
         var list = controller.getVietnameseToEnglishMap().get(vn);
         if (list == null) return;
 
-        StringBuilder sb = new StringBuilder();
-        for (String eng : list) {
-            WordEnglish w = controller.getDictionaryData().get(eng);
-            sb.append("• ").append(eng).append("\n");
-            sb.append("   Type: ").append(w.getType()).append("\n");
-            sb.append("   Phonetic: ").append(w.getTranscription()).append("\n");
-            sb.append("   Example: ").append(w.getExample()).append("\n\n");
+        // Dùng Set để lưu trữ các Loại từ (Type) và Phiên âm (Phonetic) duy nhất
+        Set<String> uniqueTypes = new LinkedHashSet<>();
+        Set<String> uniquePhonetics = new LinkedHashSet<>(); // <--- THÊM SET NÀY
+
+        StringBuilder meaningBuilder = new StringBuilder();
+        StringBuilder exampleBuilder = new StringBuilder();
+
+        //  Duyệt danh sách để chia thông tin Types & Phonetics
+        for (int i = 0; i < list.size(); i++) {
+            String engWord = list.get(i);
+            WordEnglish w = controller.getDictionaryData().get(engWord);
+
+            if (w != null) {
+                // Loại từ
+                String type = w.getType().toUpperCase();
+                if (!type.isEmpty())
+                    uniqueTypes.add(type);
+
+                // Phiên âm duy
+                String phonetic = w.getTranscription();
+                if (!phonetic.isEmpty())
+                    uniquePhonetics.add(phonetic);
+            }
+
+            meaningBuilder.append("• ").append(engWord).append("\n");
+
+            if (!w.getExample().isEmpty())
+            {
+                exampleBuilder.append("• ").append(engWord).append(": ");
+                exampleBuilder.append(w.getExample()).append("\n");
+            }
         }
 
-        meaningArea.setText("Vietnamese: " + vn);
-        exampleArea.setText(sb.toString());
+        // 4. Cập nhật Type Label theo định dạng DẤU PHẨY
+        String aggregatedTypes = String.join(", ", uniqueTypes);
+        typeLabel.setText("Type: " + aggregatedTypes);
+
+        // 5. Cập nhật Phonetic Label theo định dạng DẤU PHẨY
+        String aggregatedPhonetics = String.join(", ", uniquePhonetics);
+        phoneticLabel.setText("Phonetic: " + aggregatedPhonetics);
+
+        // 6. Đổ dữ liệu vào 2 ô Text Area
+        meaningArea.setText(meaningBuilder.toString());
+        exampleArea.setText(exampleBuilder.toString());
+
+        meaningArea.setCaretPosition(0);
+        exampleArea.setCaretPosition(0);
+
     }
 
     private void clearDetail() {
