@@ -1,11 +1,7 @@
 package org.example;
 
-import org.example.controller.DataLoader;
-import org.example.model.WordEnglish;
-import org.example.logic.TTS;
+import org.example.ulti.TTS;
 
-import java.util.List;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
