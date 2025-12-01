@@ -10,6 +10,7 @@ public class WordEnglish {
     private String createdAt;
     private String updatedAt;
     private String transcription;
+    private String lastViewedAt;
     private boolean favourite;
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
@@ -22,9 +23,14 @@ public class WordEnglish {
         this.favourite = false;
         this.createdAt = LocalDateTime.now().format(formatter);
         this.updatedAt = LocalDateTime.now().format(formatter);
+        this.lastViewedAt = "";
     }
 
     //Setters
+    public void setLastViewedAt(String lastViewedAt) {
+        this.lastViewedAt = lastViewedAt;
+    }
+
     public void setTextVietnamese(String textVietnamese) {
         this.textVietnamese = textVietnamese;
     }
@@ -80,5 +86,9 @@ public class WordEnglish {
 
     public String getTranscription() {
         return transcription;
+    }
+
+    public String getLastViewedAt() {
+        return lastViewedAt;
     }
 }
