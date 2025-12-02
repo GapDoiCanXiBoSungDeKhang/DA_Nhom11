@@ -1,6 +1,7 @@
 package org.example.controller;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import org.example.logic.TrieTree;
@@ -34,7 +35,7 @@ public class DataLoader {
         try (InputStream inputStream =
                      getClass().getClassLoader().getResourceAsStream(jsonFileName)) {
 
-            // ⭐ Sửa lỗi: không dùng "data/" nữa
+            //Sửa lỗi: không dùng "data/" nữa
             if (inputStream == null) {
                 throw new FileNotFoundException("Không tìm thấy file trong resources: " + jsonFileName);
             }
@@ -70,7 +71,10 @@ public class DataLoader {
     }
 
     public void saveDataToJson(String jsonFileName) {
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder()
+                .setPrettyPrinting()     //bật pretty print. Gson sẽ tự động căng lề, xuống dòng, thụt đầu dòng như file gốc
+                .disableHtmlEscaping()    //Tắt việc “escape” các ký tự đặc biệt như /, <, >… → giữ nguyên phiên âm /ˈæp.əl/như cũ.
+                .create();
         try (Writer writer = new OutputStreamWriter(
                 new FileOutputStream("src/main/resources/data/" + jsonFileName), StandardCharsets.UTF_8)) {
 
