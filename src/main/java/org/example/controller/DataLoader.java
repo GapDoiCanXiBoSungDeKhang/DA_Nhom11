@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DataLoader {
-
     private final Map<String, WordEnglish> dictionaryData = new HashMap<>();
     private final TrieTree englishTrie = new TrieTree();
 

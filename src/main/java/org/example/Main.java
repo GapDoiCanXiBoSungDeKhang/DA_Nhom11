@@ -3,12 +3,15 @@ package org.example;
 import org.example.logic.MergerSortKeyMap;
 import org.example.model.WordEnglish;
 import org.example.ulti.TTS;
-
+import javax.swing.SwingUtilities;
+import org.example.view.DictionaryUI;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class Main {
     public static void main(String[] args) {
+         SwingUtilities.invokeLater(() -> {
+            new DictionaryUI().setVisible(true);
 //        //Test không giao diện
 //
 //
@@ -223,6 +226,7 @@ public class Main {
             System.out.println("Updated At: " + info.getUpdatedAt());
             System.out.println("Last Viewed At: " + info.getLastViewedAt());
             System.out.println("----------------------------");
-        }
+          }
+       });
     }
 }

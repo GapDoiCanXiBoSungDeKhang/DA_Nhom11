@@ -70,7 +70,7 @@ public class WordManagerUI extends javax.swing.JFrame {
         form.add(createField("Phonetic", fieldPhonetic));
         form.add(createArea("Meaning", fieldMeaning));
         form.add(createArea("Example", fieldExample));
-
+        
         JButton btnAdd = new JButton("Add Word");
         JButton btnUpdate = new JButton("Update Word");
         JButton btnDelete = new JButton("Delete Word");
@@ -81,6 +81,21 @@ public class WordManagerUI extends javax.swing.JFrame {
         buttonPanel.add(btnUpdate);
         buttonPanel.add(btnDelete);
         buttonPanel.add(btnSave);
+        // NÚT QUAY VỀ DICTIONARY UI
+        JButton btnBack = new JButton("⬅ Back");
+        btnBack.setFont(new Font("SansSerif", Font.BOLD, 14));
+        btnBack.setBackground(new Color(230, 230, 230));
+        btnBack.setFocusPainted(false);
+        btnBack.setBorder(BorderFactory.createLineBorder(new Color(200, 200, 200), 1, true));
+        btnBack.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+        btnBack.addActionListener(e -> {
+            new DictionaryUI().setVisible(true);  // mở lại dictionary
+            this.setVisible(false);               // ẩn WordManagerUI
+        });
+
+        // add vào panel chứa các nút
+        buttonPanel.add(btnBack);
 
         form.add(buttonPanel);
 
@@ -116,12 +131,14 @@ public class WordManagerUI extends javax.swing.JFrame {
     }
 
     private void loadWords() {
-        listModel.clear();
+    listModel.clear();
 
-        for (String key : controller.getDictionaryData().keySet()) {
-            listModel.addElement(key);
-        }
-    }
+    controller.getDictionaryData()
+            .keySet()
+            .stream()
+            .sorted(String::compareToIgnoreCase)   // SẮP XẾP A → Z
+            .forEach(listModel::addElement);
+}
 
     private void loadSelectedWord() {
         String key = wordList.getSelectedValue();
@@ -154,7 +171,7 @@ public class WordManagerUI extends javax.swing.JFrame {
             )
         );
 
-        listModel.addElement(word);
+        loadWords();
         isDataModified = true;
         JOptionPane.showMessageDialog(this, "Added successfully!");
     }
@@ -175,8 +192,7 @@ public class WordManagerUI extends javax.swing.JFrame {
             controller.getDictionaryData().remove(oldWord);
             controller.getDictionaryData().put(newWord, w);
 
-            listModel.removeElement(oldWord);
-            listModel.addElement(newWord);
+            loadWords();
         }
 
         isDataModified = true;
@@ -222,7 +238,7 @@ public class WordManagerUI extends javax.swing.JFrame {
         } else if (option == JOptionPane.NO_OPTION) {
             // Người dùng chọn KHÔNG (Không lưu)
 
-            // Thoát ứng dụng
+            //Thoát ứng dụng
             dispose();
             System.exit(0);
         }
@@ -233,7 +249,7 @@ public class WordManagerUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

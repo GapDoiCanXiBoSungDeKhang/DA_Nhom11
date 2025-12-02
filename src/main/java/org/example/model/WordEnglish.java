@@ -2,6 +2,9 @@ package org.example.model;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeParseException;
 
 public class WordEnglish {
     private String textVietnamese;
@@ -12,6 +15,7 @@ public class WordEnglish {
     private String transcription;
     private String lastViewedAt;
     private boolean favourite;
+    
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
 
@@ -27,6 +31,9 @@ public class WordEnglish {
     }
 
     //Setters
+    public void updateLastViewedNow() {
+    this.lastViewedAt = java.time.Instant.now().toString();  
+    }
     public void setLastViewedAt(String lastViewedAt) {
         this.lastViewedAt = lastViewedAt;
     }
@@ -93,15 +100,17 @@ public class WordEnglish {
     }
 
     public long getLastViewedTimestamp() {
-        if (lastViewedAt == null || lastViewedAt.isEmpty()) {
-            return 0; // nghĩa là chưa từng xem
-        }
-
+    if (lastViewedAt == null || lastViewedAt.isEmpty()) return 0L;
+    try {
+        LocalDateTime dt = LocalDateTime.parse(lastViewedAt);
+        return dt.toInstant(ZoneOffset.UTC).toEpochMilli();
+    } catch (DateTimeParseException ex) {
+        // nếu format khác (ví dụ có timezone) thử dùng Instant.parse
         try {
             return java.time.Instant.parse(lastViewedAt).toEpochMilli();
-        } catch (Exception e) {
-            return 0; // nếu format lỗi
+            } catch (Exception e) {
+            return 0L;
+            }
         }
     }
-
 }

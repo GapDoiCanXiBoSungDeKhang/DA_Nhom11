@@ -2,7 +2,6 @@ package org.example.view;
 
 import org.example.controller.DataLoader;
 import org.example.model.WordEnglish;
-import javax.swing.border.TitledBorder;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
@@ -13,6 +12,90 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class DictionaryUI extends JFrame {
+    class SearchBar extends JPanel {
+    public JTextField field;
+    public SearchBar() {
+        setLayout(new BorderLayout());
+        setOpaque(false);
+
+        // ICON SEARCH
+        JLabel icon = new JLabel("🔍");
+        icon.setFont(new Font("SansSerif", Font.PLAIN, 23));
+        icon.setBorder(BorderFactory.createEmptyBorder(0, 12, 0, 8));
+
+        // ROUNDED TEXT FIELD
+        field = new RoundedTextField(10);
+        field.setPreferredSize(new Dimension(420, 40));
+        field.setFont(new Font("SansSerif", Font.PLAIN, 16));
+
+        // ADD
+        add(icon, BorderLayout.WEST);
+        add(field, BorderLayout.CENTER);
+
+        setMaximumSize(new Dimension(600, 40));
+    }
+}
+    class HistoryWindow extends JFrame {
+    public HistoryWindow(java.util.List<String> history, DictionaryUI mainUI) {
+        setTitle("Search History");
+        setSize(400, 500);
+        setLocationRelativeTo(null);
+
+        DefaultListModel<String> model = new DefaultListModel<>();
+        history.forEach(model::addElement);
+
+        JList<String> list = new JList<>(model);
+        list.setFont(new Font("SansSerif", Font.PLAIN, 18));
+
+        JScrollPane scroll = new JScrollPane(list);
+        add(scroll);
+
+        list.addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                String word = list.getSelectedValue();
+                if (word != null) {
+                    if (mainUI.isEnglishMode) mainUI.showEnglishWord(word);
+                    else mainUI.showVietnameseWord(word);
+                    this.dispose();
+                }
+            }
+        });
+    }
+    }
+    class FavoriteWordsWindow extends JFrame {
+
+    public FavoriteWordsWindow(DictionaryUI mainUI) {
+        setTitle("Favorite Words");
+        setSize(400, 500);
+        setLocationRelativeTo(null);
+
+        DefaultListModel<String> model = new DefaultListModel<>();
+
+        // Lấy các từ có favourite = true từ JSON
+        controller.getDictionaryData().forEach((word, wObj) -> {
+            if (wObj.isFavourite()) model.addElement(word);
+        });
+
+        JList<String> list = new JList<>(model);
+        list.setFont(new Font("SansSerif", Font.PLAIN, 18));
+
+        JScrollPane scroll = new JScrollPane(list);
+        add(scroll);
+
+        list.addListSelectionListener(e -> {
+            if (!e.getValueIsAdjusting()) {
+                String word = list.getSelectedValue();
+                if (word != null) {
+                    mainUI.showEnglishWord(word);
+                    this.dispose();
+                }
+            }
+        });
+    }
+    }
+    private JButton favButton;
+    private static java.util.List<String> historyWords = new java.util.ArrayList<>();
+   
     class RoundedListPanel extends JPanel {
         private int arc = 25;
 
@@ -34,7 +117,7 @@ public class DictionaryUI extends JFrame {
             g2.fillRoundRect(0, 0, getWidth(), getHeight(), arc, arc);
 
             // border
-            g2.setColor(new Color(220,220,225));
+            g2.setColor(new Color(180, 210, 255));
             g2.setStroke(new BasicStroke(1.4f));
             g2.drawRoundRect(1, 1, getWidth()-3, getHeight()-3, arc, arc);
 
@@ -67,7 +150,7 @@ public class DictionaryUI extends JFrame {
             g2.setColor(Color.WHITE); // nền card
             g2.fillRoundRect(0, 0, getWidth(), getHeight(), arc, arc);
 
-            g2.setColor(new Color(220, 220, 225)); // border mảnh
+            g2.setColor(new Color(180, 210, 255)); // border mảnh
             g2.setStroke(new BasicStroke(1.5f));
             g2.drawRoundRect(1, 1, getWidth()-2, getHeight()-2, arc, arc);
 
@@ -212,11 +295,50 @@ public class DictionaryUI extends JFrame {
             Graphics2D g2 = (Graphics2D) g.create();
             g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-            g2.setColor(new Color(200, 200, 200)); // viền xám nhẹ
+            g2.setColor(new Color(180, 210, 255)); // viền xám nhẹ
             g2.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, arcWidth, arcHeight);
             g2.dispose();
         }
     }
+    class CustomScrollBarUI extends javax.swing.plaf.basic.BasicScrollBarUI {
+
+    private final int THUMB_SIZE = 8;  // độ dày thanh kéo
+    private final int ARC = 10;        // độ bo tròn
+
+    @Override
+    protected void configureScrollBarColors() {
+        thumbColor = new Color(0, 0, 0, 40); // màu mờ mờ
+        trackColor = new Color(0, 0, 0, 0);  // trong suốt
+    }
+
+    @Override
+    protected Dimension getMaximumThumbSize() {
+        return new Dimension(THUMB_SIZE, THUMB_SIZE);
+    }
+
+    @Override
+    protected Dimension getMinimumThumbSize() {
+        return new Dimension(THUMB_SIZE, THUMB_SIZE);
+    }
+
+    @Override
+    protected void paintThumb(Graphics g, JComponent c, Rectangle r) {
+        Graphics2D g2 = (Graphics2D) g.create();
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        Color thumb = new Color(0, 0, 0, 80); // thumb đậm hơn chút khi vẽ
+        g2.setColor(thumb);
+
+        g2.fillRoundRect(r.x, r.y, r.width, r.height, ARC, ARC);
+
+        g2.dispose();
+    }
+
+    @Override
+    protected void paintTrack(Graphics g, JComponent c, Rectangle r) {
+        // track trong suốt hoàn toàn
+    }
+}
     // SEARCH FIELD WITH LEFT PADDING
     class SearchTextField extends JTextField {
         public SearchTextField() {
@@ -227,6 +349,23 @@ public class DictionaryUI extends JFrame {
             setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
         }
     }
+    // ================= UPDATE LAST VIEWED =================
+    private void updateLastViewed(String word) {
+    if (word == null || word.isEmpty()) return;
+
+    if (!historyWords.contains(word)) {
+        historyWords.add(0, word);
+    } else {
+        historyWords.remove(word);
+        historyWords.add(0, word);
+    }
+
+    // giới hạn 50
+    if (historyWords.size() > 50) {
+        historyWords.remove(historyWords.size() - 1);
+    }
+}
+
 
     // VARIABLES
     private final DataLoader controller;
@@ -238,12 +377,12 @@ public class DictionaryUI extends JFrame {
 
     private JTextArea meaningArea, exampleArea;
     private JLabel typeLabel, phoneticLabel, wordLabel;
-
+    private JButton soundButton;
     private boolean isEnglishMode = true;
+    private RoundedToggleButton modeSwitch;
 
     // macOS colors
-    private final Color macBg = new Color(245, 245, 248);
-    private final Color cardBg = Color.WHITE;
+    private final Color macBg = new Color(235, 247, 255);
     private final Color border = new Color(220, 220, 225);
     private final Color macBlue = new Color(0, 122, 255);
     private final Color macLightBlue = new Color(180, 215, 255);
@@ -251,43 +390,164 @@ public class DictionaryUI extends JFrame {
     // CONSTRUCTOR
     public DictionaryUI() {
 
-        controller = new DataLoader("data/Vietnamese_english.json"); // LOAD FROM RESOURCES
-
+       controller = new DataLoader("data/Vietnamese_english.json");
+    
         setTitle("English ↔ Vietnamese Dictionary");
-        initComponents();
         setSize(1000, 650);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         getContentPane().setBackground(macBg);
+        
+        
+       // ---------------- TOP PANEL CLEAN VERSION ----------------
 
-        // SEARCH BAR
-        searchField = new RoundedTextField(10);
-        searchField.setPreferredSize(new Dimension(320, 40));
-        // WRAPPER để tạo khoảng trống
-        JPanel searchWrapper = new JPanel(new BorderLayout());
-        searchWrapper.setOpaque(false);
-        searchWrapper.setBorder(BorderFactory.createEmptyBorder(2, 0, 2, 0));  // thêm khoảng cách top & bottom
-        searchWrapper.add(searchField, BorderLayout.CENTER);
+        class SideButton extends JButton {
+        private final Color bgColor;
+        private final int arc = 40;
 
-        JPanel searchPanel = new JPanel(new BorderLayout());
-        searchPanel.setBackground(macBg);
-        searchPanel.add(searchWrapper, BorderLayout.CENTER);
-        // MODE SWITCH
-        RoundedToggleButton modeSwitch = new RoundedToggleButton("English → Vietnamese");
+        public SideButton(String text, Color bgColor) {
+            super(text);
+            this.bgColor = bgColor;
+
+            setFocusPainted(false);
+            setContentAreaFilled(false);
+            setBorderPainted(false);
+            setOpaque(false);
+
+            setFont(new Font("SansSerif", Font.BOLD, 13));
+            setForeground(Color.BLACK);
+            setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+            setMargin(new Insets(10, 18, 10, 18));
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            Graphics2D g2 = (Graphics2D) g.create();
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+            // draw rounded background
+            g2.setColor(bgColor);
+            g2.fillRoundRect(0, 0, getWidth(), getHeight(), arc, arc);
+
+            super.paintComponent(g2);
+            g2.dispose();
+        }
+    }
+        
+        // =================== NEW TOP PANEL (STYLE 2) ======================
+        JPanel topPanel = new JPanel();
+        topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS));
+        topPanel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+        topPanel.setBackground(macBg);
+        
+        // ====== TITLE LABEL (TOP CENTER) ======
+        
+        JLabel titleLabel = new JLabel("DICTIONARY") {
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D) g;
+
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+
+        // Gradient xanh Apple
+        GradientPaint gradient = new GradientPaint(
+                0, 0, new Color(0, 122, 255),      // xanh dương
+                0, getHeight(), new Color(52, 199, 89) // xanh lá Apple
+        );
+
+        g2.setPaint(gradient);
+        g2.setFont(getFont());
+
+        FontMetrics fm = g2.getFontMetrics();
+        int x = (getWidth() - fm.stringWidth(getText())) / 2;
+        int y = (getHeight() + fm.getAscent()) / 2 - 4;
+
+        g2.drawString(getText(), x, y);
+    }
+};
+
+        titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 38));
+        titleLabel.setOpaque(false);
+        titleLabel.setPreferredSize(new Dimension(1000, 50));
+        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+
+        // Add title vào topPanel
+        topPanel.add(titleLabel);
+        topPanel.add(Box.createVerticalStrut(10));
+
+        // ==== ROW 1: Favorites | History | (Glue) | ModeSwitch | Manager Button ====
+        JPanel row1 = new JPanel();
+        row1.setLayout(new BoxLayout(row1, BoxLayout.X_AXIS));
+        row1.setOpaque(false);
+
+        // Favorites + History
+        JPanel leftGroup = new JPanel();
+        leftGroup.setLayout(new BoxLayout(leftGroup, BoxLayout.X_AXIS));
+        leftGroup.setOpaque(false);
+
+        JButton favListButton = new SideButton("❤ Favorites", new Color(255, 230, 120));
+        favListButton.addActionListener(e -> new FavoriteWordsWindow(this).setVisible(true));
+
+        JButton historyBtn = new SideButton("⏱ History", new Color(220, 220, 220));
+        historyBtn.addActionListener(e -> new HistoryWindow(historyWords, this).setVisible(true));
+
+        leftGroup.add(favListButton);
+        leftGroup.add(Box.createRigidArea(new Dimension(10, 0)));
+        leftGroup.add(historyBtn);
+
+        // Add to row1
+        row1.add(leftGroup);
+        row1.add(Box.createHorizontalGlue());  // đẩy nhóm còn lại sang phải
+
+        // Mode switch
+        modeSwitch = new RoundedToggleButton("English → Vietnamese");
         modeSwitch.addActionListener(e -> {
             isEnglishMode = !isEnglishMode;
             modeSwitch.setText(isEnglishMode ? "English → Vietnamese" : "Vietnamese → English");
-            listModel.clear();
+            loadAllWords();
             clearDetail();
         });
 
-        JPanel topPanel = new JPanel(new BorderLayout(20, 20));
-        topPanel.setBorder(BorderFactory.createEmptyBorder(25, 15, 10, 15));
-        topPanel.setBackground(macBg);
-        topPanel.add(searchPanel, BorderLayout.CENTER);
-        topPanel.add(modeSwitch, BorderLayout.EAST);
+        // Manager button (right arrow)
+        JButton switchToManager = new JButton("➜");
+        switchToManager.setPreferredSize(new Dimension(40, 30));
+        switchToManager.setMaximumSize(new Dimension(40, 30));
+        switchToManager.setBorder(BorderFactory.createLineBorder(new Color(200, 200, 200), 1, true));
+        switchToManager.setBackground(new Color(230, 230, 230));
+        switchToManager.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        switchToManager.addActionListener(e -> {
+            new WordManagerUI().setVisible(true);
+            this.setVisible(false);
+        });
 
+        // Add mode switch + manager btn
+        row1.add(modeSwitch);
+        row1.add(Box.createRigidArea(new Dimension(10, 0)));
+        row1.add(switchToManager);
+
+        // ==== ROW 2: SEARCH BAR CENTERED ====
+        JPanel row2 = new JPanel();
+        row2.setLayout(new BoxLayout(row2, BoxLayout.X_AXIS));
+        row2.setOpaque(false);
+        row2.setBorder(BorderFactory.createEmptyBorder(12, 0, 0, 0));
+
+        // dùng SearchBar (có icon)
+        SearchBar searchBar = new SearchBar();
+        searchField = searchBar.field;   // lấy ô nhập trong SearchBar
+
+        row2.add(Box.createHorizontalGlue());
+        row2.add(searchBar);             // ✔ add searchBar có icon
+        row2.add(Box.createHorizontalGlue());
+
+        // Add rows to top panel
+        topPanel.add(row1);
+        topPanel.add(row2);
+
+        // Add to frame
         add(topPanel, BorderLayout.NORTH);
 
         // SUGGESTION LIST
@@ -297,9 +557,12 @@ public class DictionaryUI extends JFrame {
         suggestionList.setSelectionBackground(macLightBlue);
         suggestionList.setFixedCellHeight(32);
         suggestionList.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
-
         // scroll bên trong bo góc
         JScrollPane scrollList = new JScrollPane(suggestionList);
+        scrollList.getVerticalScrollBar().setUI(new CustomScrollBarUI());
+        scrollList.getHorizontalScrollBar().setUI(new CustomScrollBarUI());
+        scrollList.getVerticalScrollBar().setOpaque(false);
+        scrollList.getHorizontalScrollBar().setOpaque(false);
         scrollList.setBorder(BorderFactory.createEmptyBorder(8,0,0,0));
         scrollList.getViewport().setOpaque(false);
         scrollList.setOpaque(false);
@@ -307,7 +570,6 @@ public class DictionaryUI extends JFrame {
         // panel bo góc đẹp
         RoundedListPanel listCard = new RoundedListPanel();
         listCard.add(scrollList, BorderLayout.CENTER);
-
         listCard.setPreferredSize(new Dimension(260, 0));
 
         // cách lề trái
@@ -330,7 +592,73 @@ public class DictionaryUI extends JFrame {
         wordLabel.setFont(new Font("SansSerif", Font.BOLD, 28)); // Font to (size 24)
         wordLabel.setForeground(macBlue); // Màu xanh
         wordLabel.setAlignmentX(Component.LEFT_ALIGNMENT); // Căn trái
+  
+        // --- tạo panel chứa từ + nút trái tim ---
+        favButton = new JButton("♡");
+        favButton.setFont(new Font("SansSerif", Font.BOLD, 26));
+        favButton.setForeground(Color.GRAY);
+        favButton.setContentAreaFilled(false);
+        favButton.setBorderPainted(false);
+        favButton.setFocusPainted(false);
+        favButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        favButton.setVisible(false);
+        
+        // gắn listener để nút hoạt động
+        favButton.addActionListener(e -> {
+    String current = wordLabel.getText();
+    if (current == null || current.isEmpty()) return;
 
+    if (isEnglishMode) {
+        // ENGLISH MODE — current là từ tiếng Anh
+        WordEnglish w = controller.getDictionaryData().get(current);
+        if (w == null) return;
+
+        boolean newValue = !w.isFavourite();
+        w.setFavourite(newValue);
+
+        favButton.setText(newValue ? "❤" : "♡");
+        favButton.setForeground(newValue ? Color.RED : Color.GRAY);
+    } 
+    else {
+        // VIETNAMESE MODE — current là tiếng Việt
+        var engList = controller.getVietnameseToEnglishMap().get(current);
+        if (engList == null) return;
+
+        // Tìm xem có từ tiếng Anh nào favorite chưa
+        boolean currentlyFavorite = engList.stream()
+                .map(eng -> controller.getDictionaryData().get(eng))
+                .anyMatch(w -> w != null && w.isFavourite());
+
+        // Đảo trạng thái cho toàn bộ từ tiếng Anh
+        boolean newValue = !currentlyFavorite;
+
+        for (String eng : engList) {
+            WordEnglish w = controller.getDictionaryData().get(eng);
+            if (w != null) w.setFavourite(newValue);
+        }
+
+        favButton.setText(newValue ? "❤" : "♡");
+        favButton.setForeground(newValue ? Color.RED : Color.GRAY);
+    }
+    
+        controller.saveDataToJson("Vietnamese_english.json");
+});
+
+        // PANEL GỘP
+        JPanel titlePanel = new JPanel();
+        titlePanel.setLayout(new BoxLayout(titlePanel, BoxLayout.X_AXIS));
+        titlePanel.setOpaque(false);
+        
+        // NGĂN PANEL BỊ GIÃN → KHÔNG CHE NÚT TRÁI TIM
+        titlePanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 50));
+
+        // Chỉ add MỘT LẦN và add trật tự đúng
+        titlePanel.add(wordLabel);
+        titlePanel.add(Box.createRigidArea(new Dimension(10, 0)));
+        titlePanel.add(favButton);
+        titlePanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        // Thêm vào detail đúng chỗ và đúng 1 lần
+        detail.add(titlePanel);
         typeLabel = new JLabel("Type: ");
         typeLabel.setFont(new Font("SansSerif", Font.PLAIN, 20));
         typeLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -338,6 +666,23 @@ public class DictionaryUI extends JFrame {
         phoneticLabel = new JLabel("Phonetic: ");
         phoneticLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
         phoneticLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        // NÚT LOA — ban đầu ẩn
+        soundButton = new JButton("🔊");
+        soundButton.setFont(new Font("SansSerif", Font.PLAIN, 20));
+        soundButton.setFocusPainted(false);
+        soundButton.setContentAreaFilled(false);
+        soundButton.setBorderPainted(false);
+        soundButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        soundButton.setVisible(false);
+
+        // Khi nhấn nút loa → đọc từ
+        soundButton.addActionListener(e -> {
+            String word = wordLabel.getText();
+            if (word != null && !word.isEmpty()) {
+                org.example.ulti.TTS.init();
+                org.example.ulti.TTS.speak(word);
+            }
+        });
 
         CardComponent meaningCard = createCard("Meaning");
         CardComponent exampleCard = createCard("Example");
@@ -348,17 +693,29 @@ public class DictionaryUI extends JFrame {
         meaningCard.panel.setAlignmentX(Component.LEFT_ALIGNMENT);
         exampleCard.panel.setAlignmentX(Component.LEFT_ALIGNMENT);
 
-        detail.add(wordLabel);
-        detail.add(Box.createVerticalStrut(10));
+       
         detail.add(typeLabel);
         detail.add(Box.createVerticalStrut(5));
-        detail.add(phoneticLabel);
+        JPanel phoneticPanel = new JPanel();
+        phoneticPanel.setLayout(new BoxLayout(phoneticPanel, BoxLayout.X_AXIS));
+        phoneticPanel.setOpaque(false);
+        phoneticPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        phoneticPanel.add(phoneticLabel);
+        phoneticPanel.add(Box.createRigidArea(new Dimension(10, 0)));
+        phoneticPanel.add(soundButton);
+
+        // Thêm vào detail
+        detail.add(phoneticPanel);
         detail.add(Box.createVerticalStrut(10));
         detail.add(meaningCard.panel);
         detail.add(Box.createVerticalStrut(15));
         detail.add(exampleCard.panel);
-
+        
         add(detail, BorderLayout.CENTER);
+        // Load list ngay khi mở app
+        loadAllWords();
+        reloadHistoryFromJson();
 
         // EVENTS
         searchField.addKeyListener(new KeyAdapter() {
@@ -412,52 +769,101 @@ public class DictionaryUI extends JFrame {
 
     // SEARCH UPDATE
     private void updateSuggestions() {
-        String text = searchField.getText().trim().toLowerCase();
-        listModel.clear();
-        if (text.isEmpty()) return;
+     String text = searchField.getText().trim().toLowerCase();
+    listModel.clear();
 
-        List<String> result = isEnglishMode ?
-                controller.getEnglishTrie().searchByPrefix(text)
-                : controller.getVietnameseTrie().searchByPrefix(text);
+    // Khi Ô SEARCH RỖNG → reset giao diện
+    if (text.isEmpty()) {
 
-        result.forEach(listModel::addElement);
+        // ➤ XÓA PHẦN CHI TIẾT BÊN PHẢI
+        clearDetail();
+        wordLabel.setText("");
+        favButton.setVisible(false);
+        soundButton.setVisible(false);
+
+        // ➤ LOAD LẠI DANH SÁCH THEO MODE
+        if (isEnglishMode) {
+            controller.getEnglishTrie()
+                    .getAllWords()
+                    .forEach(listModel::addElement);
+        } else {
+            controller.getVietnameseTrie()
+                    .getAllWords()
+                    .forEach(listModel::addElement);
+        }
+
+        return;
     }
+
+    // Khi có chữ → search theo prefix
+    List<String> result = isEnglishMode
+            ? controller.getEnglishTrie().searchByPrefix(text)
+            : controller.getVietnameseTrie().searchByPrefix(text);
+
+    result.forEach(listModel::addElement);
+}
+
+    private void loadAllWords() {
+    listModel.clear();
+
+    if (isEnglishMode) {
+        controller.getEnglishTrie().getAllWords()
+                .forEach(listModel::addElement);
+    } else {
+        controller.getVietnameseTrie().getAllWords()
+                .forEach(listModel::addElement);
+    }
+}
+    private void reloadHistoryFromJson() {
+    historyWords.clear();
+
+    controller.getDictionaryData().forEach((eng, w) -> {
+        if (w.getLastViewedAt() != null && !w.getLastViewedAt().isEmpty()) {
+            historyWords.add(eng);
+        }
+    });
+
+    // sắp xếp theo thời gian giảm dần
+    historyWords.sort((a, b) -> Long.compare(
+            controller.getDictionaryData().get(b).getLastViewedTimestamp(),
+            controller.getDictionaryData().get(a).getLastViewedTimestamp()
+    ));
+}
 
     //  WORD DISPLAY
     private void showEnglishWord(String word) {
-        WordEnglish w = controller.getDictionaryData().get(word);
+        WordEnglish w = controller.getDictionaryData().get(word);   
         if (w == null) return;
+        
+        w.updateLastViewedNow();
+        controller.saveDataToJson("Vietnamese_english.json");  // 🔥 lưu file
+        updateLastViewed(word);
 
         wordLabel.setText(word);
         typeLabel.setText("Type: " + w.getType());
         phoneticLabel.setText("Phonetic: " + w.getTranscription());
         meaningArea.setText(w.getTextVietnamese());
         exampleArea.setText(w.getExample());
+        favButton.setVisible(true);
+        soundButton.setVisible(true);
+        favButton.setText(w.isFavourite() ? "❤" : "♡");
+        favButton.setForeground(w.isFavourite() ? Color.RED : Color.GRAY);
     }
 
     private void showVietnameseWord(String vn) {
         clearDetail();
-
-//        var list = controller.getVietnameseToEnglishMap().get(vn);
-//        if (list == null) return;
-//
-//        StringBuilder sb = new StringBuilder();
-//        for (String eng : list) {
-//            WordEnglish w = controller.getDictionaryData().get(eng);
-//            sb.append("• ").append(eng).append("\n");
-//            sb.append("   Type: ").append(w.getType()).append("\n");
-//            sb.append("   Phonetic: ").append(w.getTranscription()).append("\n");
-//            sb.append("   Example: ").append(w.getExample()).append("\n\n");
-//
-//        }
-//
-//        meaningArea.setText("Vietnamese: " + vn);
-//        exampleArea.setText(sb.toString());
-        if (wordLabel != null)
-            wordLabel.setText(vn);
-
+        wordLabel.setText(vn);
         var list = controller.getVietnameseToEnglishMap().get(vn);
         if (list == null) return;
+         
+// ⭐ CẬP NHẬT LAST VIEWED CHO MỌI TỪ TIẾNG ANH ⭐
+        String firstEng = list.get(0);
+        WordEnglish w0 = controller.getDictionaryData().get(firstEng);
+
+        if (w0 != null) 
+            w0.updateLastViewedNow();
+            controller.saveDataToJson("Vietnamese_english.json"); // 🔥 SAVE
+            updateLastViewed(firstEng);
 
         // Dùng Set để lưu trữ các Loại từ (Type) và Phiên âm (Phonetic) duy nhất
         Set<String> uniqueTypes = new LinkedHashSet<>();
@@ -490,6 +896,7 @@ public class DictionaryUI extends JFrame {
                 exampleBuilder.append("• ").append(engWord).append(": ");
                 exampleBuilder.append(w.getExample()).append("\n");
             }
+          
         }
 
         // 4. Cập nhật Type Label theo định dạng DẤU PHẨY
@@ -506,16 +913,34 @@ public class DictionaryUI extends JFrame {
 
         meaningArea.setCaretPosition(0);
         exampleArea.setCaretPosition(0);
+        
+        favButton.setVisible(true);
+        // Lấy English words ứng với nghĩa tiếng Việt
+        var engList = controller.getVietnameseToEnglishMap().get(vn);
 
+        boolean isFav = false;
+        if (engList != null) {
+            for (String eng : engList) {
+                WordEnglish w = controller.getDictionaryData().get(eng);
+                if (w != null && w.isFavourite()) {
+                    isFav = true;
+                    break;
+                }
+            }
+        }
+
+        // Hiển thị nút trái tim
+        favButton.setVisible(true);
+        favButton.setText(isFav ? "❤" : "♡");
+        favButton.setForeground(isFav ? Color.RED : Color.GRAY);
     }
-
     private void clearDetail() {
-        typeLabel.setText("Type: ");
-        phoneticLabel.setText("Phonetic: ");
-        meaningArea.setText("");
-        exampleArea.setText("");
+    if (typeLabel != null) typeLabel.setText("Type: ");
+    if (phoneticLabel != null) phoneticLabel.setText("Phonetic: ");
+    if (meaningArea != null) meaningArea.setText("");
+    if (exampleArea != null) exampleArea.setText("");
     }
-    @SuppressWarnings("unchecked")
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -535,10 +960,7 @@ public class DictionaryUI extends JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public static void main(String args[]) {
-        SwingUtilities.invokeLater(() -> new DictionaryUI().setVisible(true));
-    }
 }
 
-// Variables declaration - do not modify//GEN-BEGIN:variables
-// End of variables declaration//GEN-END:variables
+// Variables declaration - do not modify                     
+// End of variables declaration
