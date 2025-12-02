@@ -1,24 +1,4 @@
 {
-  "small": {
-    "textVietnamese": "nhỏ",
-    "type": "adjective",
-    "example": "The house is small.",
-    "createdAt": "2025-11-29T21:25:56.6503729",
-    "updatedAt": "2025-11-29T21:25:56.6503729",
-    "transcription": "/smɑːl/",
-    "favourite": false,
-    "lastViewedAt":""
-  },
-  "door": {
-    "textVietnamese": "cánh cửa",
-    "type": "noun",
-    "example": "Please close the door.",
-    "createdAt": "2025-11-29T21:25:56.6503729",
-    "updatedAt": "2025-11-29T21:25:56.6503729",
-    "transcription": "/dɔːr/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
-  },
   "parent": {
     "textVietnamese": "cha mẹ",
     "type": "noun",
@@ -26,18 +6,18 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/ˈper.ənt/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
   },
-  "quick": {
-    "textVietnamese": "nhanh",
-    "type": "adjective",
-    "example": "He gave a quick answer.",
+  "egg": {
+    "textVietnamese": "quả trứng",
+    "type": "noun",
+    "example": "I eat two eggs for breakfast.",
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
-    "transcription": "/kwɪk/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
+    "transcription": "/eɡ/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
   },
   "happy": {
     "textVietnamese": "vui vẻ",
@@ -46,18 +26,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/ˈhæp.i/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
-  },
-  "mouse": {
-    "textVietnamese": "con chuột",
-    "type": "noun",
-    "example": "A mouse ran across the floor.",
-    "createdAt": "2025-11-29T21:25:56.6503729",
-    "updatedAt": "2025-11-29T21:25:56.6503729",
-    "transcription": "/maʊs/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
   },
   "tea": {
     "textVietnamese": "trà",
@@ -66,8 +36,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/tiː/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
   },
   "music": {
     "textVietnamese": "âm nhạc",
@@ -76,8 +46,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/ˈmjuː.zɪk/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
   },
   "road": {
     "textVietnamese": "con đường",
@@ -86,18 +56,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/roʊd/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
-  },
-  "school": {
-    "textVietnamese": "trường học",
-    "type": "noun",
-    "example": "We go to school every day.",
-    "createdAt": "2025-11-29T21:25:56.6503729",
-    "updatedAt": "2025-11-29T21:25:56.6503729",
-    "transcription": "/skuːl/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
   },
   "friend": {
     "textVietnamese": "bạn bè",
@@ -106,8 +66,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/frend/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
   },
   "fire": {
     "textVietnamese": "lửa",
@@ -116,18 +76,18 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/faɪr/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
   },
-  "hat": {
-    "textVietnamese": "cái mũ",
-    "type": "noun",
-    "example": "He wore a blue hat.",
+  "dance": {
+    "textVietnamese": "nhảy múa",
+    "type": "verb",
+    "example": "She loves to dance at parties.",
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
-    "transcription": "/hæt/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
+    "transcription": "/dæns/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
   },
   "energy": {
     "textVietnamese": "năng lượng",
@@ -136,18 +96,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/ˈen.ɚ.dʒi/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
-  },
-  "banana": {
-    "textVietnamese": "quả chuối",
-    "type": "noun",
-    "example": "Bananas are rich in potassium.",
-    "createdAt": "2025-11-29T21:25:56.6503729",
-    "updatedAt": "2025-11-29T21:25:56.6503729",
-    "transcription": "/bəˈnæn.ə/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
   },
   "sky": {
     "textVietnamese": "bầu trời",
@@ -156,68 +106,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/skaɪ/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
-  },
-  "rain": {
-    "textVietnamese": "mưa",
-    "type": "noun",
-    "example": "Heavy rain is expected today.",
-    "createdAt": "2025-11-29T21:25:56.6503729",
-    "updatedAt": "2025-11-29T21:25:56.6503729",
-    "transcription": "/reɪn/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
-  },
-  "glass": {
-    "textVietnamese": "ly thủy tinh",
-    "type": "noun",
-    "example": "He drank a glass of water.",
-    "createdAt": "2025-11-29T21:25:56.6503729",
-    "updatedAt": "2025-11-29T21:25:56.6503729",
-    "transcription": "/ɡlæs/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
-  },
-  "king": {
-    "textVietnamese": "nhà vua",
-    "type": "noun",
-    "example": "The king ruled the country.",
-    "createdAt": "2025-11-29T21:25:56.6503729",
-    "updatedAt": "2025-11-29T21:25:56.6503729",
-    "transcription": "/kɪŋ/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
-  },
-  "nigger": {
-    "textVietnamese": "none",
-    "type": "none",
-    "example": "phân biệt chũng tộc người da đen",
-    "createdAt": "2025-11-29T21:25:56.6503729",
-    "updatedAt": "2025-11-29T21:25:56.6515377",
-    "transcription": "none",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
-  },
-  "island": {
-    "textVietnamese": "hòn đảo",
-    "type": "noun",
-    "example": "They spent a week on the island.",
-    "createdAt": "2025-11-29T21:25:56.6503729",
-    "updatedAt": "2025-11-29T21:25:56.6503729",
-    "transcription": "/ˈaɪ.lənd/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
-  },
-  "planet": {
-    "textVietnamese": "hành tinh",
-    "type": "noun",
-    "example": "Earth is a planet.",
-    "createdAt": "2025-11-29T21:25:56.6503729",
-    "updatedAt": "2025-11-29T21:25:56.6503729",
-    "transcription": "/ˈplæn.ɪt/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
   },
   "milk": {
     "textVietnamese": "sữa",
@@ -226,18 +116,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/mɪlk/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
-  },
-  "tree": {
-    "textVietnamese": "cây",
-    "type": "noun",
-    "example": "A tall tree grows in the garden.",
-    "createdAt": "2025-11-29T21:25:56.6503729",
-    "updatedAt": "2025-11-29T21:25:56.6503729",
-    "transcription": "/triː/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
   },
   "tiger": {
     "textVietnamese": "hổ",
@@ -246,8 +126,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/ˈtaɪ.ɡɚ/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
   },
   "easy": {
     "textVietnamese": "dễ dàng",
@@ -256,28 +136,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/ˈiː.zi/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
-  },
-  "water": {
-    "textVietnamese": "nước",
-    "type": "noun",
-    "example": "Drink enough water.",
-    "createdAt": "2025-11-29T21:25:56.6503729",
-    "updatedAt": "2025-11-29T21:25:56.6503729",
-    "transcription": "/ˈwɑː.t̬ɚ/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
-  },
-  "heart": {
-    "textVietnamese": "trái tim",
-    "type": "noun",
-    "example": "Her heart beats quickly.",
-    "createdAt": "2025-11-29T21:25:56.6503729",
-    "updatedAt": "2025-11-29T21:25:56.6503729",
-    "transcription": "/hɑːrt/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
   },
   "lion": {
     "textVietnamese": "sư tử",
@@ -286,18 +146,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/ˈlaɪ.ən/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
-  },
-  "knife": {
-    "textVietnamese": "con dao",
-    "type": "noun",
-    "example": "Be careful with the knife.",
-    "createdAt": "2025-11-29T21:25:56.6503729",
-    "updatedAt": "2025-11-29T21:25:56.6503729",
-    "transcription": "/naɪf/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
   },
   "moon": {
     "textVietnamese": "mặt trăng",
@@ -306,8 +156,478 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/muːn/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "light": {
+    "textVietnamese": "ánh sáng",
+    "type": "noun",
+    "example": "The light is very bright.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/laɪt/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "phone": {
+    "textVietnamese": "điện thoại",
+    "type": "noun",
+    "example": "He bought a new phone.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/foʊn/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "bridge": {
+    "textVietnamese": "cây cầu",
+    "type": "noun",
+    "example": "They crossed the old bridge.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/brɪdʒ/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "dog": {
+    "textVietnamese": "con chó",
+    "type": "noun",
+    "example": "The dog is barking loudly.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/dɔːɡ/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "city": {
+    "textVietnamese": "thành phố",
+    "type": "noun",
+    "example": "The city is crowded today.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ˈsɪt.i/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "queen": {
+    "textVietnamese": "nữ hoàng",
+    "type": "noun",
+    "example": "The queen visited the town.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/kwiːn/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "bright": {
+    "textVietnamese": "sáng, thông minh",
+    "type": "adjective",
+    "example": "The room is very bright.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/braɪt/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "yellow": {
+    "textVietnamese": "màu vàng",
+    "type": "adjective",
+    "example": "She wore a yellow dress.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ˈjel.oʊ/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "hot": {
+    "textVietnamese": "nóng",
+    "type": "adjective",
+    "example": "The soup is very hot.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/hɑːt/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "sun": {
+    "textVietnamese": "mặt trời",
+    "type": "noun",
+    "example": "The sun rises in the east.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/sʌn/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "sea": {
+    "textVietnamese": "biển",
+    "type": "noun",
+    "example": "We swam in the sea.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/siː/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "gold": {
+    "textVietnamese": "vàng",
+    "type": "noun",
+    "example": "This ring is made of gold.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ɡoʊld/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "computer": {
+    "textVietnamese": "máy tính",
+    "type": "noun",
+    "example": "My computer is running slowly.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/kəmˈpjuː.t̬ɚ/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "dark": {
+    "textVietnamese": "tối",
+    "type": "adjective",
+    "example": "It gets dark early in winter.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/dɑːrk/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "eat": {
+    "textVietnamese": "ăn",
+    "type": "verb",
+    "example": "We eat breakfast at 7 AM.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/iːt/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "camera": {
+    "textVietnamese": "máy ảnh",
+    "type": "noun",
+    "example": "He bought a new camera.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ˈkæm.rə/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "map": {
+    "textVietnamese": "bản đồ",
+    "type": "noun",
+    "example": "He looked at the map.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/mæp/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "key": {
+    "textVietnamese": "chìa khóa",
+    "type": "noun",
+    "example": "I lost my house key.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/kiː/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "table": {
+    "textVietnamese": "cái bàn",
+    "type": "noun",
+    "example": "Dinner is on the table.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ˈteɪ.bəl/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "star": {
+    "textVietnamese": "ngôi sao",
+    "type": "noun",
+    "example": "The sky is full of stars.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/stɑːr/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "wolf": {
+    "textVietnamese": "sói",
+    "type": "noun",
+    "example": "The wolf howled at night.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/wʊlf/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "photo": {
+    "textVietnamese": "ảnh chụp",
+    "type": "noun",
+    "example": "She took a beautiful photo.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ˈfoʊ.t̬oʊ/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "juice": {
+    "textVietnamese": "nước ép",
+    "type": "noun",
+    "example": "I drank a glass of orange juice.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/dʒuːs/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "leaf": {
+    "textVietnamese": "lá cây",
+    "type": "noun",
+    "example": "A leaf fell from the tree.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/liːf/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "flower": {
+    "textVietnamese": "bông hoa",
+    "type": "noun",
+    "example": "She picked a beautiful flower.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ˈflaʊ.ɚ/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "fast": {
+    "textVietnamese": "nhanh",
+    "type": "adjective",
+    "example": "He runs very fast.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/fæst/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "fish": {
+    "textVietnamese": "con cá",
+    "type": "noun",
+    "example": "He caught a big fish.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/fɪʃ/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "garden": {
+    "textVietnamese": "khu vườn",
+    "type": "noun",
+    "example": "The garden is full of flowers.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ˈɡɑːr.dən/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "river": {
+    "textVietnamese": "con sông",
+    "type": "noun",
+    "example": "The river flows to the sea.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ˈrɪv.ɚ/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "bed": {
+    "textVietnamese": "cái giường",
+    "type": "noun",
+    "example": "I go to bed early every night.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/bed/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "small": {
+    "textVietnamese": "nhỏ",
+    "type": "adjective",
+    "example": "The house is small.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/smɑːl/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "door": {
+    "textVietnamese": "cánh cửa",
+    "type": "noun",
+    "example": "Please close the door.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/dɔːr/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "quick": {
+    "textVietnamese": "nhanh",
+    "type": "adjective",
+    "example": "He gave a quick answer.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/kwɪk/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "run": {
+    "textVietnamese": "chạy",
+    "type": "verb",
+    "example": "He can run very fast.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/rʌn/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "mouse": {
+    "textVietnamese": "con chuột",
+    "type": "noun",
+    "example": "A mouse ran across the floor.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/maʊs/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "school": {
+    "textVietnamese": "trường học",
+    "type": "noun",
+    "example": "We go to school every day.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/skuːl/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "hat": {
+    "textVietnamese": "cái mũ",
+    "type": "noun",
+    "example": "He wore a blue hat.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/hæt/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "banana": {
+    "textVietnamese": "quả chuối",
+    "type": "noun",
+    "example": "Bananas are rich in potassium.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/bəˈnæn.ə/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "rain": {
+    "textVietnamese": "mưa",
+    "type": "noun",
+    "example": "Heavy rain is expected today.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/reɪn/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "glass": {
+    "textVietnamese": "ly thủy tinh",
+    "type": "noun",
+    "example": "He drank a glass of water.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ɡlæs/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "king": {
+    "textVietnamese": "nhà vua",
+    "type": "noun",
+    "example": "The king ruled the country.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/kɪŋ/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "island": {
+    "textVietnamese": "hòn đảo",
+    "type": "noun",
+    "example": "They spent a week on the island.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ˈaɪ.lənd/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "planet": {
+    "textVietnamese": "hành tinh",
+    "type": "noun",
+    "example": "Earth is a planet.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ˈplæn.ɪt/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "tree": {
+    "textVietnamese": "cây",
+    "type": "noun",
+    "example": "A tall tree grows in the garden.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/triː/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "water": {
+    "textVietnamese": "nước",
+    "type": "noun",
+    "example": "Drink enough water.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ˈwɑː.t̬ɚ/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "heart": {
+    "textVietnamese": "trái tim",
+    "type": "noun",
+    "example": "Her heart beats quickly.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/hɑːrt/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "knife": {
+    "textVietnamese": "con dao",
+    "type": "noun",
+    "example": "Be careful with the knife.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/naɪf/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
   },
   "ocean": {
     "textVietnamese": "đại dương",
@@ -316,8 +636,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/ˈoʊ.ʃən/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
   },
   "dream": {
     "textVietnamese": "giấc mơ",
@@ -326,7 +646,367 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/driːm/",
-    "favourite": false,
-    "lastViewedAt": "2025-11-29T21:25:56.6503729"
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "snow": {
+    "textVietnamese": "tuyết",
+    "type": "noun",
+    "example": "The snow covered the ground.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/snoʊ/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "desk": {
+    "textVietnamese": "cái bàn học",
+    "type": "noun",
+    "example": "He works at his desk all day.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/desk/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "name": {
+    "textVietnamese": "tên",
+    "type": "noun",
+    "example": "What is your name?",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/neɪm/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "job": {
+    "textVietnamese": "công việc",
+    "type": "noun",
+    "example": "She found a new job.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/dʒɑːb/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "dash": {
+    "textVietnamese": "lao nhanh",
+    "type": "verb",
+    "example": "He dashed across the street to catch the bus.",
+    "createdAt": "2025-12-02T01:03:00.8637367",
+    "updatedAt": "2025-12-02T01:03:00.8647344",
+    "transcription": "/dæʃ/",
+    "lastViewedAt": "",
+    "favourite": false
+  },
+  "elephant": {
+    "textVietnamese": "con voi",
+    "type": "noun",
+    "example": "The elephant is the largest land animal.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ˈel.ə.fənt/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "lake": {
+    "textVietnamese": "hồ nước",
+    "type": "noun",
+    "example": "We swam in the lake.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/leɪk/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "chicken": {
+    "textVietnamese": "con gà / thịt gà",
+    "type": "noun",
+    "example": "We had chicken for dinner.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ˈtʃɪk.ɪn/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "game": {
+    "textVietnamese": "trò chơi",
+    "type": "noun",
+    "example": "We played a fun game.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ɡeɪm/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "jog": {
+    "textVietnamese": "chạy",
+    "type": "verb",
+    "example": "She jogs in the park every morning to stay fit.",
+    "createdAt": "2025-12-02T10:30:45.1234567",
+    "updatedAt": "2025-12-02T10:30:45.1234567",
+    "transcription": "/dʒɑːɡ/",
+    "lastViewedAt": "2025-12-02T10:30:45.1234567",
+    "favourite": false
+  },
+  "student": {
+    "textVietnamese": "học sinh",
+    "type": "noun",
+    "example": "She is a good student.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ˈstuː.dənt/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "idea": {
+    "textVietnamese": "ý tưởng",
+    "type": "noun",
+    "example": "That's a great idea!",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/aɪˈdiː.ə/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "book": {
+    "textVietnamese": "quyển sách",
+    "type": "noun",
+    "example": "She reads a book every night.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/bʊk/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "snake": {
+    "textVietnamese": "con rắn",
+    "type": "noun",
+    "example": "A snake crawled through the grass.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/sneɪk/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "cold": {
+    "textVietnamese": "lạnh",
+    "type": "adjective",
+    "example": "It's very cold outside.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/koʊld/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "apple": {
+    "textVietnamese": "quả táo",
+    "type": "noun",
+    "example": "I eat an apple every morning.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ˈæp.əl/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "ball": {
+    "textVietnamese": "quả bóng",
+    "type": "noun",
+    "example": "The kids are playing with a red ball.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/bɔːl/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "paper": {
+    "textVietnamese": "giấy",
+    "type": "noun",
+    "example": "She wrote her name on the paper.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ˈpeɪ.pɚ/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "car": {
+    "textVietnamese": "xe hơi",
+    "type": "noun",
+    "example": "My dad drives a blue car.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/kɑːr/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "cat": {
+    "textVietnamese": "con mèo",
+    "type": "noun",
+    "example": "The cat is sleeping on the sofa.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/kæt/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "shoe": {
+    "textVietnamese": "giày",
+    "type": "noun",
+    "example": "He bought new shoes.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ʃuː/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "zebra": {
+    "textVietnamese": "ngựa vằn",
+    "type": "noun",
+    "example": "The zebra has black and white stripes.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ˈziː.brə/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "nature": {
+    "textVietnamese": "thiên nhiên",
+    "type": "noun",
+    "example": "Nature is beautiful.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ˈneɪ.tʃɚ/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "umbrella": {
+    "textVietnamese": "cái ô",
+    "type": "noun",
+    "example": "Don't forget your umbrella.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ʌmˈbrel.ə/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "go": {
+    "textVietnamese": "đi",
+    "type": "verb",
+    "example": "We go to school at 7 AM.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ɡoʊ/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "lamp": {
+    "textVietnamese": "đèn bàn",
+    "type": "noun",
+    "example": "Turn on the lamp, please.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/læmp/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "rice": {
+    "textVietnamese": "gạo",
+    "type": "noun",
+    "example": "We eat rice almost every day.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/raɪs/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "room": {
+    "textVietnamese": "phòng",
+    "type": "noun",
+    "example": "The room is clean.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ruːm/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "home": {
+    "textVietnamese": "ngôi nhà",
+    "type": "noun",
+    "example": "They returned home safely.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/hoʊm/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "orange": {
+    "textVietnamese": "quả cam",
+    "type": "noun",
+    "example": "I ate an orange for lunch.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ˈɔːr.ɪndʒ/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "airplane": {
+    "textVietnamese": "máy bay",
+    "type": "noun",
+    "example": "The airplane flies very high in the sky.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ˈer.pleɪn/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "coffee": {
+    "textVietnamese": "cà phê",
+    "type": "noun",
+    "example": "I drink black coffee every morning.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ˈkɔː.fi/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "earth": {
+    "textVietnamese": "trái đất",
+    "type": "noun",
+    "example": "The earth moves around the sun.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ɜːrθ/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "window": {
+    "textVietnamese": "cửa sổ",
+    "type": "noun",
+    "example": "Open the window, please.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ˈwɪn.doʊ/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "family": {
+    "textVietnamese": "gia đình",
+    "type": "noun",
+    "example": "I love spending time with my family.",
+    "createdAt": "2025-11-29T21:25:56.6503729",
+    "updatedAt": "2025-11-29T21:25:56.6503729",
+    "transcription": "/ˈfæm.əl.i/",
+    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "favourite": false
+  },
+  "walk": {
+    "textVietnamese": "đi bộ",
+    "type": "verb",
+    "example": "I walk to school every day because it's good for my health.",
+    "createdAt": "2025-12-02T10:30:45.1234567",
+    "updatedAt": "2025-12-02T10:30:45.1234567",
+    "transcription": "/wɔːk/",
+    "lastViewedAt": "2025-12-02T10:30:45.1234567",
+    "favourite": false
   }
 }
