@@ -5,6 +5,8 @@ import org.example.model.WordEnglish;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.Map;
 
 public class WordManagerUI extends javax.swing.JFrame {
@@ -17,9 +19,12 @@ public class WordManagerUI extends javax.swing.JFrame {
     private JTextField fieldWord, fieldType, fieldPhonetic;
     private JTextArea fieldMeaning, fieldExample;
 
+    private boolean isDataModified =false;
+
     public WordManagerUI() {
         this.controller = new DataLoader("data/Vietnamese_english.json");
 
+        initComponents();
         setTitle("Word Manager - Add / Edit / Delete Words");
         setSize(900, 600);
         setLocationRelativeTo(null);
@@ -27,6 +32,13 @@ public class WordManagerUI extends javax.swing.JFrame {
 
         initUI();
         loadWords();
+        //BẮT SỰ KIỆN ĐÓNG CỬA SỔ
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                confirmExit(); // Gọi hàm xử lý việc thoát
+            }
+        });
     }
 
     private void initUI() {
@@ -84,6 +96,7 @@ public class WordManagerUI extends javax.swing.JFrame {
         btnDelete.addActionListener(e -> deleteWord());
         btnSave.addActionListener(e -> {
             controller.saveDataToJson("Vietnamese_english.json");
+            isDataModified = false;
             JOptionPane.showMessageDialog(this, "Saved to JSON successfully!");
         });
     }
@@ -142,6 +155,7 @@ public class WordManagerUI extends javax.swing.JFrame {
         );
 
         listModel.addElement(word);
+        isDataModified = true;
         JOptionPane.showMessageDialog(this, "Added successfully!");
     }
 
@@ -165,6 +179,7 @@ public class WordManagerUI extends javax.swing.JFrame {
             listModel.addElement(newWord);
         }
 
+        isDataModified = true;
         JOptionPane.showMessageDialog(this, "Updated successfully!");
     }
 
@@ -175,7 +190,43 @@ public class WordManagerUI extends javax.swing.JFrame {
         controller.getDictionaryData().remove(key);
         listModel.removeElement(key);
 
+        isDataModified = true;
         JOptionPane.showMessageDialog(this, "Deleted successfully!");
+    }
+
+    private void confirmExit() {
+        if (!isDataModified) {
+            // Nếu KHÔNG có thay đổi, thoát ngay lập tức
+            dispose(); // Giải phóng tài nguyên của JFrame này
+            System.exit(0); // Thoát toàn bộ ứng dụng
+            return;
+        }
+
+        // Nếu CÓ thay đổi, hiển thị hộp thoại xác nhận
+        int option = JOptionPane.showConfirmDialog(
+                this,
+                "Từ điển đã được thay đổi nhưng chưa lưu. Bạn có muốn lưu lại không?",
+                "Xác nhận Thoát",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.WARNING_MESSAGE
+        );
+
+        if (option == JOptionPane.YES_OPTION) {
+            // Người dùng chọn CÓ (Lưu)
+            controller.saveDataToJson("Vietnamese_english.json");
+            isDataModified = false; // Đã lưu xong
+
+            // Thoát ứng dụng
+            dispose();
+            System.exit(0);
+        } else if (option == JOptionPane.NO_OPTION) {
+            // Người dùng chọn KHÔNG (Không lưu)
+
+            // Thoát ứng dụng
+            dispose();
+            System.exit(0);
+        }
+        // Nếu người dùng chọn CANCEL, cửa sổ vẫn mở và không làm gì cả
     }
 
     @SuppressWarnings("unchecked")
