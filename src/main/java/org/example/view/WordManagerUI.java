@@ -2,7 +2,8 @@ package org.example.view;
 
 import org.example.controller.DataLoader;
 import org.example.model.WordEnglish;
-
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
@@ -12,6 +13,7 @@ import java.util.Map;
 public class WordManagerUI extends javax.swing.JFrame {
 
     private final DataLoader controller;
+    private JTextField searchFieldManager;
 
     private JList<String> wordList;
     private DefaultListModel<String> listModel;
@@ -21,8 +23,32 @@ public class WordManagerUI extends javax.swing.JFrame {
 
     private boolean isDataModified =false;
 
-    public WordManagerUI() {
-        this.controller = new DataLoader("data/Vietnamese_english.json");
+    private final DictionaryUI parent;
+    
+    private void updateManagerSuggestion() {
+    String text = searchFieldManager.getText().trim().toLowerCase();
+    listModel.clear();
+
+    if (text.isEmpty()) {
+        controller.getDictionaryData()
+                .keySet()
+                .stream()
+                .sorted(String::compareToIgnoreCase)
+                .forEach(listModel::addElement);
+        return;
+    }
+
+    controller.getDictionaryData()
+            .keySet()
+            .stream()
+            .filter(w -> w.toLowerCase().startsWith(text))
+            .sorted(String::compareToIgnoreCase)
+            .forEach(listModel::addElement);
+}
+    
+    public WordManagerUI(DictionaryUI parent) {
+    this.parent = parent;
+    this.controller = parent.controller;   // dùng chung controller (QUAN TRỌNG!)
 
         initComponents();
         setTitle("Word Manager - Add / Edit / Delete Words");
@@ -42,14 +68,34 @@ public class WordManagerUI extends javax.swing.JFrame {
     }
 
     private void initUI() {
+        // ==== SEARCH BAR (FOR WORD MANAGER) ====
+        searchFieldManager = new JTextField();
+        searchFieldManager.setFont(new Font("SansSerif", Font.PLAIN, 14));
+        searchFieldManager.setBorder(BorderFactory.createEmptyBorder(8, 10, 8, 10));
+        searchFieldManager.setPreferredSize(new Dimension(250, 35));
+
+        searchFieldManager.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                updateManagerSuggestion();
+            }
+        });
+
+        // ==== LIST ====
         listModel = new DefaultListModel<>();
         wordList = new JList<>(listModel);
         wordList.setFont(new Font("SansSerif", Font.PLAIN, 14));
 
-        JScrollPane leftPane = new JScrollPane(wordList);
-        leftPane.setPreferredSize(new Dimension(250, 0));
+        JScrollPane scrollList = new JScrollPane(wordList);
 
-        add(leftPane, BorderLayout.WEST);
+        // ==== PANEL GỒM SEARCH + LIST ====
+        JPanel leftPanel = new JPanel(new BorderLayout());
+        leftPanel.setPreferredSize(new Dimension(250, 0));
+
+        leftPanel.add(searchFieldManager, BorderLayout.NORTH);
+        leftPanel.add(scrollList, BorderLayout.CENTER);
+
+        add(leftPanel, BorderLayout.WEST);
 
         // Form
         JPanel form = new JPanel();
@@ -90,9 +136,22 @@ public class WordManagerUI extends javax.swing.JFrame {
         btnBack.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         btnBack.addActionListener(e -> {
-            new DictionaryUI().setVisible(true);  // mở lại dictionary
-            this.setVisible(false);               // ẩn WordManagerUI
-        });
+
+        // Nếu có thay đổi → lưu JSON
+        if (isDataModified) {
+            controller.saveDataToJson("Vietnamese_english.json");
+        }
+
+        // Reload lại controller (Trie + Map + Data)
+        controller.reloadFromJson();
+
+        // ĐÓNG WordManagerUI
+        this.dispose();
+
+        // MỞ GIAO DIỆN DICTIONARY MỚI
+        DictionaryUI ui = new DictionaryUI();
+        ui.setVisible(true);
+    });
 
         // add vào panel chứa các nút
         buttonPanel.add(btnBack);
@@ -132,6 +191,7 @@ public class WordManagerUI extends javax.swing.JFrame {
 
     private void loadWords() {
     listModel.clear();
+    searchFieldManager.setText("");
 
     controller.getDictionaryData()
             .keySet()
@@ -155,60 +215,69 @@ public class WordManagerUI extends javax.swing.JFrame {
     }
 
     private void addWord() {
-        String word = fieldWord.getText().trim();
+    String word = fieldWord.getText().trim();
 
-        if (word.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Word cannot be empty");
-            return;
-        }
-
-        controller.getDictionaryData().put(word,
-            new WordEnglish(
-                fieldType.getText(),
-                fieldPhonetic.getText(),
-                fieldMeaning.getText(),
-                fieldExample.getText()
-            )
-        );
-
-        loadWords();
-        isDataModified = true;
-        JOptionPane.showMessageDialog(this, "Added successfully!");
+    if (word.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Word cannot be empty");
+        return;
     }
+
+    WordEnglish w = new WordEnglish(
+            fieldType.getText(),
+            fieldPhonetic.getText(),
+            fieldMeaning.getText(),
+            fieldExample.getText()
+    );
+
+    // ❗ thêm từ đúng cách (update Trie + Map)
+    controller.addWordToTries(word, w);
+
+    loadWords();
+    isDataModified = true;
+
+    JOptionPane.showMessageDialog(this, "Added successfully!");
+}
 
     private void updateWord() {
-        String oldWord = wordList.getSelectedValue();
-        if (oldWord == null) return;
+    String oldWord = wordList.getSelectedValue();
+    if (oldWord == null) return;
 
-        String newWord = fieldWord.getText();
+    String newWord = fieldWord.getText().trim();
 
-        WordEnglish w = controller.getDictionaryData().get(oldWord);
-        w.setType(fieldType.getText());
-        w.setTranscription(fieldPhonetic.getText());
-        w.setTextVietnamese(fieldMeaning.getText());
-        w.setExample(fieldExample.getText());
+    // Lấy word cũ
+    WordEnglish w = controller.getDictionaryData().get(oldWord);
 
-        if (!oldWord.equals(newWord)) {
-            controller.getDictionaryData().remove(oldWord);
-            controller.getDictionaryData().put(newWord, w);
+    w.setType(fieldType.getText());
+    w.setTranscription(fieldPhonetic.getText());
+    w.setTextVietnamese(fieldMeaning.getText());
+    w.setExample(fieldExample.getText());
 
-            loadWords();
-        }
+    // Đổi tên từ
+    if (!oldWord.equals(newWord)) {
 
-        isDataModified = true;
-        JOptionPane.showMessageDialog(this, "Updated successfully!");
+        // Xóa từ cũ đúng cách
+        controller.removeWordFromTries(oldWord);
+
+        // Thêm lại như từ mới
+        controller.addWordToTries(newWord, w);
     }
+
+    loadWords();
+    isDataModified = true;
+    JOptionPane.showMessageDialog(this, "Updated successfully!");
+}
 
     private void deleteWord() {
-        String key = wordList.getSelectedValue();
-        if (key == null) return;
+    String key = wordList.getSelectedValue();
+    if (key == null) return;
 
-        controller.getDictionaryData().remove(key);
-        listModel.removeElement(key);
+    controller.removeWordFromTries(key);
 
-        isDataModified = true;
-        JOptionPane.showMessageDialog(this, "Deleted successfully!");
-    }
+    listModel.removeElement(key);
+    isDataModified = true;
+
+    JOptionPane.showMessageDialog(this, "Deleted successfully!");
+}
 
     private void confirmExit() {
         if (!isDataModified) {
@@ -266,7 +335,10 @@ public class WordManagerUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(() -> new WordManagerUI().setVisible(true));
+          java.awt.EventQueue.invokeLater(() -> {
+        DictionaryUI ui = new DictionaryUI();
+        new WordManagerUI(ui).setVisible(true);
+    });
     }
 }
 

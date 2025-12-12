@@ -12,8 +12,65 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class DictionaryUI extends JFrame {
+    private String lastSelectedWord = null;
+    class ManagerButton extends JButton {
+    private final int arc = 40;
+    private Color normal = new Color(180, 215, 255);     // pastel blue
+    private Color hover = new Color(160, 200, 250);
+    private boolean isHover = false;
+
+    public ManagerButton() {
+        super("⚙");  // icon bánh răng
+        setFont(new Font("SansSerif", Font.BOLD, 20));
+        setForeground(Color.BLACK);
+
+        setFocusPainted(false);
+        setContentAreaFilled(false);
+        setBorderPainted(false);
+        setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+        setToolTipText("Go to Word Manager");
+        
+        // hover
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override public void mouseEntered(java.awt.event.MouseEvent e) {
+                isHover = true; repaint();
+            }
+            @Override public void mouseExited(java.awt.event.MouseEvent e) {
+                isHover = false; repaint();
+            }
+        });
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        Graphics2D g2 = (Graphics2D) g.create();
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        g2.setColor(isHover ? hover : normal);
+        g2.fillRoundRect(0, 0, getWidth(), getHeight(), arc, arc);
+
+        super.paintComponent(g2);
+        g2.dispose();
+    }
+}
+   
+    public void refreshAfterManager() {
+    searchField.setText("");
+    clearDetail();
+    wordLabel.setText("");
+
+    favButton.setVisible(false);
+    soundButton.setVisible(false);
+
+    suggestionList.clearSelection();
+    loadAllWords();
+}
+
     class SearchBar extends JPanel {
-    public JTextField field;
+    
+        public JTextField field;
+    
     public SearchBar() {
         setLayout(new BorderLayout());
         setOpaque(false);
@@ -368,7 +425,7 @@ public class DictionaryUI extends JFrame {
 
 
     // VARIABLES
-    private final DataLoader controller;
+    final DataLoader controller;
 
     private JTextField searchField;
 
@@ -383,7 +440,6 @@ public class DictionaryUI extends JFrame {
 
     // macOS colors
     private final Color macBg = new Color(235, 247, 255);
-    private final Color border = new Color(220, 220, 225);
     private final Color macBlue = new Color(0, 122, 255);
     private final Color macLightBlue = new Color(180, 215, 255);
 
@@ -508,19 +564,39 @@ public class DictionaryUI extends JFrame {
         modeSwitch.addActionListener(e -> {
             isEnglishMode = !isEnglishMode;
             modeSwitch.setText(isEnglishMode ? "English → Vietnamese" : "Vietnamese → English");
-            loadAllWords();
+
+            // 1. Xóa chữ trong ô search
+            searchField.setText("");
+
+            // 2. Xóa thông tin đang hiển thị
             clearDetail();
+            wordLabel.setText("");
+
+            // 3. Ẩn các nút trái tim + nút loa
+            favButton.setVisible(false);
+            soundButton.setVisible(false);
+
+            // 4. Xóa chọn trong danh sách suggestion
+            suggestionList.clearSelection();
+
+            // 5. Load lại danh sách phù hợp với mode mới
+            loadAllWords();
         });
 
         // Manager button (right arrow)
-        JButton switchToManager = new JButton("➜");
+        ManagerButton switchToManager = new ManagerButton();
+        switchToManager.setPreferredSize(new Dimension(45, 40));
+        switchToManager.addActionListener(e -> {
+            new WordManagerUI(this).setVisible(true);
+            this.setVisible(false);
+        });
         switchToManager.setPreferredSize(new Dimension(40, 30));
         switchToManager.setMaximumSize(new Dimension(40, 30));
         switchToManager.setBorder(BorderFactory.createLineBorder(new Color(200, 200, 200), 1, true));
         switchToManager.setBackground(new Color(230, 230, 230));
         switchToManager.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         switchToManager.addActionListener(e -> {
-            new WordManagerUI().setVisible(true);
+            new WordManagerUI(this).setVisible(true);
             this.setVisible(false);
         });
 
@@ -723,13 +799,31 @@ public class DictionaryUI extends JFrame {
         });
 
         suggestionList.addListSelectionListener(e -> {
-            if (!e.getValueIsAdjusting()) {
-                String word = suggestionList.getSelectedValue();
-                if (word == null) return;
-                if (isEnglishMode) showEnglishWord(word);
-                else showVietnameseWord(word);
+    if (!e.getValueIsAdjusting()) {
+
+        String word = suggestionList.getSelectedValue();
+        if (word == null) return;
+
+        // Nếu đang KHÔNG search và click lại đúng từ đó → reset giao diện
+        if (searchField.getText().trim().isEmpty()) {
+
+            if (word.equals(lastSelectedWord)) {
+                clearDetail();
+                wordLabel.setText("");
+                favButton.setVisible(false);
+                soundButton.setVisible(false);
+                lastSelectedWord = null;
+                return;
             }
-        });
+        }
+
+        // Ngược lại → load từ như bình thường
+        lastSelectedWord = word;
+
+        if (isEnglishMode) showEnglishWord(word);
+        else showVietnameseWord(word);
+        }
+    });
     }
 
     //CREATE SEARCH BUTTON (LOAD ICON CORRECTLY)
@@ -769,7 +863,11 @@ public class DictionaryUI extends JFrame {
 
     // SEARCH UPDATE
     private void updateSuggestions() {
-     String text = searchField.getText().trim().toLowerCase();
+
+    // ⛔ STOP — nếu event KHÔNG phải do bàn phím
+    if (!searchField.isFocusOwner()) return;
+
+    String text = searchField.getText().trim().toLowerCase();
     listModel.clear();
 
     // Khi Ô SEARCH RỖNG → reset giao diện
@@ -803,7 +901,7 @@ public class DictionaryUI extends JFrame {
     result.forEach(listModel::addElement);
 }
 
-    private void loadAllWords() {
+    public void loadAllWords() {
     listModel.clear();
 
     if (isEnglishMode) {
@@ -940,6 +1038,20 @@ public class DictionaryUI extends JFrame {
     if (meaningArea != null) meaningArea.setText("");
     if (exampleArea != null) exampleArea.setText("");
     }
+    
+    public void reloadDataFromJson() {
+    controller.reloadFromJson();
+
+    // Reset UI để dùng dữ liệu mới
+    listModel.clear();
+    loadAllWords();
+
+    // Reset listeners nếu cần
+    suggestionList.clearSelection();
+    clearDetail();
+
+    reloadHistoryFromJson();
+}
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
