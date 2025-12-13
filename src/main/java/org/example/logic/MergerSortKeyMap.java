@@ -1,21 +1,32 @@
 package org.example.logic;
 
-import org.example.controller.DataLoader;
 import org.example.model.WordEnglish;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import java.text.Collator;
+import java.util.Locale;
 
 public class MergerSortKeyMap {
-    private DataLoader loader;
+    private static final Collator COLLATOR; // khai báo công cụ so sánh theo ngôn ngữ
 
-    public MergerSortKeyMap(String fileName) {
-        this.loader = new DataLoader(fileName);
+    static {
+        // Khởi tạo Collator theo luật ngôn ngữ tiếng Việt (Việt Nam)
+        // "vi"  : mã ngôn ngữ (Vietnamese)
+        // "VN"  : mã quốc gia (Vietnam)
+        COLLATOR = Collator.getInstance(new Locale("vi", "VN"));
+        // Thiết lập mức độ so sánh:
+        // PRIMARY nghĩa là:
+        //  - Không phân biệt chữ hoa / chữ thường
+        //  - Sắp xếp đúng thứ tự bảng chữ cái tiếng Việt
+        //  - Xử lý dấu tiếng Việt theo chuẩn từ điển
+        //    ví dụ: a < á < â < b < c < d < đ
+        COLLATOR.setStrength(Collator.PRIMARY);
     }
 
-    public Map<String, WordEnglish> getListOfWords() {
-        Map<String, WordEnglish> listOfWords = this.loader.getDictionaryData();
-//        Lấy key ra mảng
+    // sắp xếp theo từ điển tiếng anh
+    public Map<String, WordEnglish> sortEnToVn(Map<String, WordEnglish> listOfWords) {
         String[] keys = listOfWords.keySet().toArray(new String[0]);
         mergeSort(keys, 0, keys.length - 1);
         LinkedHashMap<String, WordEnglish> sortedMap = new LinkedHashMap<>();
@@ -24,6 +35,22 @@ public class MergerSortKeyMap {
         }
         return sortedMap;
     }
+
+    // sắp xếp theo từ điển tiếng Việt
+    public Map<String, List<String>> sortVnToEn(Map<String, List<String>> listOfWords) {
+        // lấy key của máp bỏ vào mảng => [hello, angry, happy, ...]
+        String[] keys = listOfWords.keySet().toArray(new String[0]);
+        // cắt ra từng phần tử và gộp
+        mergeSort(keys, 0, keys.length - 1);
+        // LinkedHashMap map có thứ tự
+        LinkedHashMap<String, List<String>> sortedMap = new LinkedHashMap<>();
+        for (String key : keys) {
+            sortedMap.put(key, listOfWords.get(key));
+        }
+//        (từ mảng keys => [angry, baby, cry, ...] =>{"angry": ..., "baby": ..., "cry": ..., ...}
+        return sortedMap;
+    }
+
 
     public void mergeSort(String[] keys, int l, int r) {
         if (l < r) {
@@ -45,7 +72,7 @@ public class MergerSortKeyMap {
 
         int i = 0, j = 0, k = l;
         while (i < n1 && j < n2) {
-            if (L[i].compareTo(R[j]) <= 0) {
+            if (COLLATOR.compare(L[i], R[j]) <= 0) {
                 list[k] = L[i];
                 i++;
             } else {
@@ -66,13 +93,9 @@ public class MergerSortKeyMap {
         }
     }
 
-    public Map<String, WordEnglish> sortByLastViewedAt() {
-        Map<String, WordEnglish> listOfWords = this.loader.getDictionaryData();
-
+    public Map<String, WordEnglish> sortByLastViewedAt(Map<String, WordEnglish> listOfWords) {
         String[] keys = listOfWords.keySet().toArray(new String[0]);
-
         mergeSortByViewed(keys, 0, keys.length - 1, listOfWords);
-
         LinkedHashMap<String, WordEnglish> sortedMap = new LinkedHashMap<>();
         for (String key : keys) sortedMap.put(key, listOfWords.get(key));
 
