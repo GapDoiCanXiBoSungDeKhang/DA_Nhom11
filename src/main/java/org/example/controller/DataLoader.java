@@ -13,12 +13,12 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 public class DataLoader {
+    // Thuộc tính để lưu trữ dữ liệu đã tải
+    private final Map<String, WordEnglish> dictionaryData = new HashMap<>(); // HashMap tra cứu từ tiếng Anh sang tiếng Việt ( Hashmap chính)
 
-    private final Map<String, WordEnglish> dictionaryData = new HashMap<>();
-
-    private TrieTree englishTrie = new TrieTree();
-    private TrieTree vietnameseTrie = new TrieTree();
-    private Map<String, List<String>> vietnameseToEnglishMap = new HashMap<>();
+    private TrieTree englishTrie = new TrieTree();// Tạo cây tiền tố gợi ý từ tiếng Anh
+    private TrieTree vietnameseTrie = new TrieTree();// Tạo cây tiền tố gợi ý từ tiếng Việt
+    private Map<String, List<String>> vietnameseToEnglishMap = new HashMap<>(); // HashMap tra cứu ngược từ tiếng Việt sang Tiếng Anh
 
     private final String jsonFileName;
 
@@ -27,33 +27,61 @@ public class DataLoader {
         loadData(jsonFileName);
     }
 
-    /*=========================================================
-     *                RELOAD TOÀN BỘ JSON
-     =========================================================*/
+
+    // LOAD BAN ĐẦU (khởi động app)
+    public void loadData(String jsonFile) {
+
+        Gson gson = new Gson();
+        // TypeToken được dùng để định dạng cấu trúc JSON có từ là Key của một Map và value là một WordEnglish
+        Type mapType = new TypeToken<Map<String, WordEnglish>>() {}.getType();
+
+        // Lấy đường dẫn file json
+        try (Reader reader = new InputStreamReader(
+                new FileInputStream("src/main/resources/" + jsonFile),
+                StandardCharsets.UTF_8)) {
+
+            // Đưa dữ liệu file json vào  map tạm(temp)
+            Map<String, WordEnglish> temp = gson.fromJson(reader, mapType);
+
+            // Nếu temp không rỗng thì đưa vào hasmap chính(Để tra cứu chi tiết O(1))
+            if (temp != null) dictionaryData.putAll(temp);
+
+            // Đưa từ tiếng Anh hoặc từ tiếng Việt vào cây tiền tố tương ứng
+            buildTries();
+            System.out.println("✔ Loaded JSON runtime: " + temp.size());
+
+        } catch (Exception e) {
+            System.err.println("Error loadData(): " + e.getMessage());
+        }
+    }
+
+    //RELOAD TOÀN BỘ JSON Khi ta cập nhật hoặc thêm xóa sửa từ điển
     public void reloadFromJson() {
         loadFromJson();   // đọc lại file
         buildTries();     // build lại trie + map
     }
 
-    /*=========================================================
-     *        >>> ĐỌC JSON TỪ FILE (CHO reloadFromJson) <<<
-     =========================================================*/
+    // ĐỌC JSON TỪ FILE (CHO reloadFromJson)
     private void loadFromJson() {
 
+        // xóa các thuộc tính cũ nếu có (trường hợp là sau khi cập nhật từ điển)
         dictionaryData.clear();
         vietnameseToEnglishMap.clear();
         englishTrie = new TrieTree();
         vietnameseTrie = new TrieTree();
 
         Gson gson = new Gson();
+        // TypeToken được dùng để định dạng cấu trúc JSON có từ là Key của một Map và value là một WordEnglish
         Type mapType = new TypeToken<Map<String, WordEnglish>>() {}.getType();
 
         try (Reader reader = new InputStreamReader(
                 new FileInputStream("src/main/resources/data/" + jsonFileName),
                 StandardCharsets.UTF_8)) {
 
+            // Đọc toàn bộ file JSON vào một Map tạm thời
             Map<String, WordEnglish> temp = gson.fromJson(reader, mapType);
 
+            //  Chuyển dữ liệu sang HashMap chính
             if (temp != null)
                 dictionaryData.putAll(temp);
 
@@ -62,9 +90,7 @@ public class DataLoader {
         }
     }
 
-    /*=========================================================
-     *                 BUILD LẠI TRIE + MAP
-     =========================================================*/
+    // BUILD TRIE ANH-VIỆT và VIỆT-ANH
     public void buildTries() {
 
         englishTrie = new TrieTree();
@@ -75,14 +101,17 @@ public class DataLoader {
             String eng = entry.getKey();
             WordEnglish w = entry.getValue();
 
+            // Chèn từ tiếng Anh vào cây Trie (Để tra cứu tiền tố O(L))
             englishTrie.insert(eng);
 
-            String vn = w.getTextVietnamese();
+            String vn = w.getTextVietnamese(); //Lấy ra định nghĩa tiếng Việt từ đối tượng WordEnglish
             vietnameseToEnglishMap
-                    .computeIfAbsent(vn, k -> new ArrayList<>())
-                    .add(eng);
+                    .computeIfAbsent(vn, k -> new ArrayList<>()) // Kiểm tra xem từ tiếng Việt đó đã là key trong hashmap chưa.
+                                                                        // Nếu chưa tạo ra một key mới là từ tiếng Việt(vn) đó và tạo 1 value mới là danh sách từ tiếng anh trống
+                                                                        // Nếu đã có trả về danh sách ArayList hiện có
+                    .add(eng); // Thêm từ tiếng anh vào danh sách đó ( Kể cả mới tạo hay cái cũ)
 
-            vietnameseTrie.insert(vn);
+            vietnameseTrie.insert(vn); // Thêm từ tiếng Việt đó vào cây tiền tố (Để tra cứu tiền tố O(L))
         }
 
         System.out.println("✔ buildTries() hoàn tất — tổng từ: " + dictionaryData.size());
@@ -123,37 +152,9 @@ public class DataLoader {
         }
 
         dictionaryData.remove(eng);
-
-        // Nếu TrieTree của bạn có delete() thì dùng:
-        // englishTrie.delete(eng);
-        // vietnameseTrie.delete(vn);
-
-        // Nếu KHÔNG có delete → rebuild toàn bộ
         buildTries();
     }
 
-    /*=========================================================
-     *                   LOAD BAN ĐẦU (khởi động app)
-     =========================================================*/
-    public void loadData(String jsonFile) {
-
-    Gson gson = new Gson();
-    Type mapType = new TypeToken<Map<String, WordEnglish>>() {}.getType();
-
-    try (Reader reader = new InputStreamReader(
-            new FileInputStream("src/main/resources/" + jsonFile),
-            StandardCharsets.UTF_8)) {
-
-        Map<String, WordEnglish> temp = gson.fromJson(reader, mapType);
-        if (temp != null) dictionaryData.putAll(temp);
-
-        buildTries();
-        System.out.println("✔ Loaded JSON runtime: " + temp.size());
-        
-    } catch (Exception e) {
-        System.err.println("Error loadData(): " + e.getMessage());
-    }
-}
 
     /*=========================================================
      *                 SAVE JSON (WordManager)
@@ -174,6 +175,19 @@ public class DataLoader {
         } catch (Exception e) {
             System.err.println("Lỗi save JSON: " + e.getMessage());
         }
+    }
+
+    // duyệt theo tiêu chí tìm kiếm các từ đã lưu
+    public List<WordEnglish> loadDataFavourite(Map<String, WordEnglish> words) {
+        List<WordEnglish> favourites = new ArrayList<>();
+
+        for (WordEnglish w : words.values()) {
+            if (w.isFavourite()) {
+                favourites.add(w);
+            }
+        }
+
+        return favourites;
     }
 
     /*=========================================================
