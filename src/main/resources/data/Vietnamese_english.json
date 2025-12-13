@@ -46,7 +46,7 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/ˈmjuː.zɪk/",
-    "lastViewedAt": "2025-12-12T14:44:55.903460700Z",
+    "lastViewedAt": "2025-12-13T05:40:00.038813400Z",
     "favourite": false
   },
   "road": {
@@ -66,7 +66,7 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/frend/",
-    "lastViewedAt": "2025-12-12T14:44:51.575700400Z",
+    "lastViewedAt": "2025-12-13T05:39:55.800218300Z",
     "favourite": false
   },
   "fire": {
@@ -166,7 +166,7 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/laɪt/",
-    "lastViewedAt": "2025-12-12T14:44:56.208955800Z",
+    "lastViewedAt": "2025-12-13T05:40:01.312171200Z",
     "favourite": false
   },
   "phone": {
@@ -186,7 +186,7 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/brɪdʒ/",
-    "lastViewedAt": "2025-12-12T17:55:30.019528700Z",
+    "lastViewedAt": "2025-12-14T12:04:37.617816900Z",
     "favourite": false
   },
   "dog": {
@@ -326,7 +326,7 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/mæp/",
-    "lastViewedAt": "2025-12-12T17:17:07.723582400Z",
+    "lastViewedAt": "2025-12-13T05:39:59.590348400Z",
     "favourite": false
   },
   "key": {
@@ -406,7 +406,7 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/ˈflaʊ.ɚ/",
-    "lastViewedAt": "2025-11-29T21:25:56.6503729",
+    "lastViewedAt": "2025-12-13T05:39:58.220506900Z",
     "favourite": false
   },
   "fast": {
@@ -776,7 +776,7 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/bʊk/",
-    "lastViewedAt": "2025-12-12T17:24:19.285880800Z",
+    "lastViewedAt": "2025-12-14T12:14:40.078003200Z",
     "favourite": false
   },
   "snake": {
@@ -806,7 +806,7 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/ˈæp.əl/",
-    "lastViewedAt": "2025-12-12T17:55:38.205001300Z",
+    "lastViewedAt": "2025-12-14T12:14:40.327188900Z",
     "favourite": true
   },
   "ball": {
@@ -816,7 +816,7 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/bɔːl/",
-    "lastViewedAt": "2025-12-12T17:55:27.120319700Z",
+    "lastViewedAt": "2025-12-14T12:14:39.621857700Z",
     "favourite": false
   },
   "paper": {
@@ -956,8 +956,8 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/ˈer.pleɪn/",
-    "lastViewedAt": "2025-12-12T17:48:19.115619700Z",
-    "favourite": false
+    "lastViewedAt": "2025-12-14T12:14:40.550436100Z",
+    "favourite": true
   },
   "coffee": {
     "textVietnamese": "cà phê",
@@ -966,7 +966,7 @@
     "createdAt": "2025-11-29T21:25:56.6503729",
     "updatedAt": "2025-11-29T21:25:56.6503729",
     "transcription": "/ˈkɔː.fi/",
-    "lastViewedAt": "2025-12-11T13:24:53.326440700Z",
+    "lastViewedAt": "2025-12-13T05:39:58.969494800Z",
     "favourite": false
   },
   "earth": {

@@ -1,72 +1,115 @@
 package org.example.view;
 
+/* ===================== IMPORT ===================== */
+
 import org.example.controller.DataLoader;
 import org.example.model.WordEnglish;
+import org.example.logic.MergerSortKeyMap;
+
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.List;
-import javax.swing.border.Border;
+import java.util.Map;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+/* ================================================== */
+/* ================== MAIN CLASS ==================== */
+/* ================================================== */
+
 public class DictionaryUI extends JFrame {
+    
+    /* ================= BIẾN XỬ LÝ DATA ================= */
+    
+    // MergeSort dùng để sắp xếp Map
+    private final MergerSortKeyMap sorter = new MergerSortKeyMap();
+
+    // Controller quản lý dữ liệu (JSON + Trie)
+    private final DataLoader controller;
+    
+    
+    // true = EN → VN | false = VN → EN
+    private boolean isEnglishMode = true;
+    
+     // dùng để detect click lại
     private String lastSelectedWord = null;
+    
+     /* ================= HISTORY ================= */
+    
+     private static java.util.List<String> historyWords = new java.util.ArrayList<>();
+     
+     /* ================= COMPONENT UI ================= */
+     
+    private JTextField searchField;
+    private JList<String> suggestionList;
+    private DefaultListModel<String> listModel;
+
+    private JLabel wordLabel, typeLabel, phoneticLabel;
+    private JTextArea meaningArea, exampleArea;
+
+    private JButton favButton, soundButton;
+    private RoundedToggleButton modeSwitch;
+    
+    /* ================= MÀU GIAO DIỆN ================= */
+    
+    private final Color macBg = new Color(235, 247, 255);
+    private final Color macBlue = new Color(0, 122, 255);
+    private final Color macLightBlue = new Color(180, 215, 255);
+    
+    /* ==================================================
+     * ================= INNER CLASSES ==================
+     * ================================================== */
+    
+      /* ---------- NÚT QUẢN LÝ ---------- */
+    
     class ManagerButton extends JButton {
-    private final int arc = 40;
-    private Color normal = new Color(180, 215, 255);     // pastel blue
-    private Color hover = new Color(160, 200, 250);
-    private boolean isHover = false;
-
-    public ManagerButton() {
-        super("⚙");  // icon bánh răng
-        setFont(new Font("SansSerif", Font.BOLD, 20));
-        setForeground(Color.BLACK);
-
-        setFocusPainted(false);
-        setContentAreaFilled(false);
-        setBorderPainted(false);
-        setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-
-        setToolTipText("Go to Word Manager");
         
-        // hover
-        addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override public void mouseEntered(java.awt.event.MouseEvent e) {
-                isHover = true; repaint();
-            }
-            @Override public void mouseExited(java.awt.event.MouseEvent e) {
-                isHover = false; repaint();
-            }
-        });
+        private final int arc = 40;
+        private Color normal = new Color(180, 215, 255);     // pastel blue
+        private Color hover = new Color(160, 200, 250);
+        private boolean isHover = false;
+
+        public ManagerButton() {
+            super("⚙");  // icon bánh răng
+            setFont(new Font("SansSerif", Font.BOLD, 20));
+            setForeground(Color.BLACK);
+
+            setFocusPainted(false);
+            setContentAreaFilled(false);
+            setBorderPainted(false);
+            setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+
+            setToolTipText("Go to Word Manager");
+
+            // hover
+            addMouseListener(new java.awt.event.MouseAdapter() {
+                @Override public void mouseEntered(java.awt.event.MouseEvent e) {
+                    isHover = true; repaint();
+                }
+                @Override public void mouseExited(java.awt.event.MouseEvent e) {
+                    isHover = false; repaint();
+                }
+            });
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            Graphics2D g2 = (Graphics2D) g.create();
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+            g2.setColor(isHover ? hover : normal);
+            g2.fillRoundRect(0, 0, getWidth(), getHeight(), arc, arc);
+
+            super.paintComponent(g2);
+            g2.dispose();
+        }
     }
-
-    @Override
-    protected void paintComponent(Graphics g) {
-        Graphics2D g2 = (Graphics2D) g.create();
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-
-        g2.setColor(isHover ? hover : normal);
-        g2.fillRoundRect(0, 0, getWidth(), getHeight(), arc, arc);
-
-        super.paintComponent(g2);
-        g2.dispose();
-    }
-}
-   
-    public void refreshAfterManager() {
-    searchField.setText("");
-    clearDetail();
-    wordLabel.setText("");
-
-    favButton.setVisible(false);
-    soundButton.setVisible(false);
-
-    suggestionList.clearSelection();
-    loadAllWords();
-}
-
+    
+     /* ---------- SEARCH BAR ---------- */
+    
     class SearchBar extends JPanel {
     
         public JTextField field;
@@ -92,66 +135,87 @@ public class DictionaryUI extends JFrame {
         setMaximumSize(new Dimension(600, 40));
     }
 }
+    
+    /* ---------- CỬA SỔ HISTORY ---------- */
+    
     class HistoryWindow extends JFrame {
-    public HistoryWindow(java.util.List<String> history, DictionaryUI mainUI) {
-        setTitle("Search History");
-        setSize(400, 500);
-        setLocationRelativeTo(null);
+        
+        public HistoryWindow(java.util.List<String> history, DictionaryUI mainUI) {
+            setTitle("Search History");
+            setSize(400, 500);
+            setLocationRelativeTo(null);
 
-        DefaultListModel<String> model = new DefaultListModel<>();
-        history.forEach(model::addElement);
+            DefaultListModel<String> model = new DefaultListModel<>();
+            history.forEach(model::addElement);
 
-        JList<String> list = new JList<>(model);
-        list.setFont(new Font("SansSerif", Font.PLAIN, 18));
+            JList<String> list = new JList<>(model);
+            list.setFont(new Font("SansSerif", Font.PLAIN, 18));
 
-        JScrollPane scroll = new JScrollPane(list);
-        add(scroll);
+            JScrollPane scroll = new JScrollPane(list);
+            add(scroll);
 
-        list.addListSelectionListener(e -> {
-            if (!e.getValueIsAdjusting()) {
-                String word = list.getSelectedValue();
-                if (word != null) {
-                    if (mainUI.isEnglishMode) mainUI.showEnglishWord(word);
-                    else mainUI.showVietnameseWord(word);
-                    this.dispose();
+            list.addListSelectionListener(e -> {
+                if (!e.getValueIsAdjusting()) {
+                    String word = list.getSelectedValue();
+                    if (word != null) {
+                        if (mainUI.isEnglishMode) mainUI.showEnglishWord(word);
+                        else mainUI.showVietnameseWord(word);
+                        this.dispose();
+                    }
                 }
-            }
-        });
+            });
+        }
     }
-    }
+    
+       /* ---------- CỬA SỔ FAVORITE ---------- */
+    
     class FavoriteWordsWindow extends JFrame {
 
-    public FavoriteWordsWindow(DictionaryUI mainUI) {
-        setTitle("Favorite Words");
-        setSize(400, 500);
-        setLocationRelativeTo(null);
+        public FavoriteWordsWindow(DictionaryUI mainUI) {
+            setTitle("Favorite Words");
+            setSize(400, 500);
+            setLocationRelativeTo(null);
 
-        DefaultListModel<String> model = new DefaultListModel<>();
+            DefaultListModel<String> model = new DefaultListModel<>();
 
-        // Lấy các từ có favourite = true từ JSON
-        controller.getDictionaryData().forEach((word, wObj) -> {
-            if (wObj.isFavourite()) model.addElement(word);
-        });
+            // Lấy các từ có favourite = true từ JSON
+            controller.getDictionaryData().forEach((word, wObj) -> {
+                if (wObj.isFavourite()) model.addElement(word);
+            });
 
-        JList<String> list = new JList<>(model);
-        list.setFont(new Font("SansSerif", Font.PLAIN, 18));
+            JList<String> list = new JList<>(model);
+            list.setFont(new Font("SansSerif", Font.PLAIN, 18));
 
-        JScrollPane scroll = new JScrollPane(list);
-        add(scroll);
+            JScrollPane scroll = new JScrollPane(list);
+            add(scroll);
 
-        list.addListSelectionListener(e -> {
-            if (!e.getValueIsAdjusting()) {
-                String word = list.getSelectedValue();
-                if (word != null) {
-                    mainUI.showEnglishWord(word);
-                    this.dispose();
+            list.addListSelectionListener(e -> {
+                if (!e.getValueIsAdjusting()) {
+                    String word = list.getSelectedValue();
+                    if (word != null) {
+                        mainUI.showEnglishWord(word);
+                        this.dispose();
+                    }
                 }
-            }
-        });
+            });
+        }
     }
-    }
-    private JButton favButton;
-    private static java.util.List<String> historyWords = new java.util.ArrayList<>();
+   
+    public void refreshAfterManager() {
+    searchField.setText("");
+    clearDetail();
+    wordLabel.setText("");
+
+    favButton.setVisible(false);
+    soundButton.setVisible(false);
+
+    suggestionList.clearSelection();
+    loadAllWords();
+}
+
+    
+    
+    
    
     class RoundedListPanel extends JPanel {
         private int arc = 25;
@@ -424,28 +488,14 @@ public class DictionaryUI extends JFrame {
 }
 
 
-    // VARIABLES
-    final DataLoader controller;
-
-    private JTextField searchField;
-
-    private JList<String> suggestionList;
-    private DefaultListModel<String> listModel;
-
-    private JTextArea meaningArea, exampleArea;
-    private JLabel typeLabel, phoneticLabel, wordLabel;
-    private JButton soundButton;
-    private boolean isEnglishMode = true;
-    private RoundedToggleButton modeSwitch;
-
-    // macOS colors
-    private final Color macBg = new Color(235, 247, 255);
-    private final Color macBlue = new Color(0, 122, 255);
-    private final Color macLightBlue = new Color(180, 215, 255);
-
-    // CONSTRUCTOR
+    /* =========================================================
+     * ==================== CONSTRUCTOR ========================
+     * ========================================================= */
+    
     public DictionaryUI() {
-
+        
+         // Load dữ liệu từ JSON
+         
        controller = new DataLoader("data/Vietnamese_english.json");
     
         setTitle("English ↔ Vietnamese Dictionary");
@@ -454,7 +504,12 @@ public class DictionaryUI extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
         getContentPane().setBackground(macBg);
+       
         
+        
+        // load lịch sử
+        
+        reloadHistoryFromJson();  
         
        // ---------------- TOP PANEL CLEAN VERSION ----------------
 
@@ -501,30 +556,30 @@ public class DictionaryUI extends JFrame {
         // ====== TITLE LABEL (TOP CENTER) ======
         
         JLabel titleLabel = new JLabel("DICTIONARY") {
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D) g;
+        @Override
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            Graphics2D g2 = (Graphics2D) g;
 
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 
-        // Gradient xanh Apple
-        GradientPaint gradient = new GradientPaint(
-                0, 0, new Color(0, 122, 255),      // xanh dương
-                0, getHeight(), new Color(52, 199, 89) // xanh lá Apple
-        );
+            // Gradient xanh Apple
+            GradientPaint gradient = new GradientPaint(
+                    0, 0, new Color(0, 122, 255),      // xanh dương
+                    0, getHeight(), new Color(52, 199, 89) // xanh lá Apple
+            );
 
-        g2.setPaint(gradient);
-        g2.setFont(getFont());
+            g2.setPaint(gradient);
+            g2.setFont(getFont());
 
-        FontMetrics fm = g2.getFontMetrics();
-        int x = (getWidth() - fm.stringWidth(getText())) / 2;
-        int y = (getHeight() + fm.getAscent()) / 2 - 4;
+            FontMetrics fm = g2.getFontMetrics();
+            int x = (getWidth() - fm.stringWidth(getText())) / 2;
+            int y = (getHeight() + fm.getAscent()) / 2 - 4;
 
-        g2.drawString(getText(), x, y);
-    }
-};
+            g2.drawString(getText(), x, y);
+        }
+    };
 
         titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 38));
         titleLabel.setOpaque(false);
@@ -905,27 +960,34 @@ public class DictionaryUI extends JFrame {
     listModel.clear();
 
     if (isEnglishMode) {
-        controller.getEnglishTrie().getAllWords()
-                .forEach(listModel::addElement);
+        // sort English → Vietnamese
+        Map<String, WordEnglish> sorted =
+                sorter.sortEnToVn(controller.getDictionaryData());
+
+        sorted.keySet().forEach(listModel::addElement);
+
     } else {
-        controller.getVietnameseTrie().getAllWords()
-                .forEach(listModel::addElement);
+        // sort Vietnamese → English
+        Map<String, List<String>> sorted =
+                sorter.sortVnToEn(controller.getVietnameseToEnglishMap());
+
+        sorted.keySet().forEach(listModel::addElement);
     }
 }
     private void reloadHistoryFromJson() {
     historyWords.clear();
 
-    controller.getDictionaryData().forEach((eng, w) -> {
+    Map<String, WordEnglish> data = controller.getDictionaryData();
+
+    // dùng MergeSortKeyMap
+    Map<String, WordEnglish> sorted =
+            sorter.sortByLastViewedAt(data);
+
+    sorted.forEach((eng, w) -> {
         if (w.getLastViewedAt() != null && !w.getLastViewedAt().isEmpty()) {
             historyWords.add(eng);
         }
     });
-
-    // sắp xếp theo thời gian giảm dần
-    historyWords.sort((a, b) -> Long.compare(
-            controller.getDictionaryData().get(b).getLastViewedTimestamp(),
-            controller.getDictionaryData().get(a).getLastViewedTimestamp()
-    ));
 }
 
     //  WORD DISPLAY
@@ -1032,12 +1094,17 @@ public class DictionaryUI extends JFrame {
         favButton.setText(isFav ? "❤" : "♡");
         favButton.setForeground(isFav ? Color.RED : Color.GRAY);
     }
+    
+     /* ================================================== */
+    /* ================== UTILITY ======================= */
+    /* ================================================== */
+    
     private void clearDetail() {
-    if (typeLabel != null) typeLabel.setText("Type: ");
-    if (phoneticLabel != null) phoneticLabel.setText("Phonetic: ");
-    if (meaningArea != null) meaningArea.setText("");
-    if (exampleArea != null) exampleArea.setText("");
-    }
+        if (typeLabel != null) typeLabel.setText("Type: ");
+        if (phoneticLabel != null) phoneticLabel.setText("Phonetic: ");
+        if (meaningArea != null) meaningArea.setText("");
+        if (exampleArea != null) exampleArea.setText("");
+        }
     
     public void reloadDataFromJson() {
     controller.reloadFromJson();
@@ -1051,6 +1118,9 @@ public class DictionaryUI extends JFrame {
     clearDetail();
 
     reloadHistoryFromJson();
+}
+    public DataLoader getController() {
+    return controller;
 }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

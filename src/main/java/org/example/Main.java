@@ -191,7 +191,6 @@ public class Main {
 //
 //        TTS.close();
 
-        MergerSortKeyMap record = new MergerSortKeyMap("data/Vietnamese_english.json");
 //
 //        Map<String, WordEnglish> sortedWords = record.getListOfWords();
 //
@@ -211,22 +210,6 @@ public class Main {
 //            System.out.println("---------------------------");
 //        }
 
-        Map<String, WordEnglish> sortedWords2 = record.sortByLastViewedAt();
-        for (Map.Entry<String, WordEnglish> entry : sortedWords2.entrySet()) {
-            String word = entry.getKey();
-            WordEnglish info = entry.getValue();
-
-            System.out.println("Word: " + word);
-            System.out.println("Meaning: " + info.getTextVietnamese());
-            System.out.println("Type: " + info.getType());
-            System.out.println("Example: " + info.getExample());
-            System.out.println("Transcription: " + info.getTranscription());
-            System.out.println("Favourite: " + info.isFavourite());
-            System.out.println("Created At: " + info.getCreatedAt());
-            System.out.println("Updated At: " + info.getUpdatedAt());
-            System.out.println("Last Viewed At: " + info.getLastViewedAt());
-            System.out.println("----------------------------");
-          }
        });
     }
 }

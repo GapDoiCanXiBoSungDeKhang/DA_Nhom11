@@ -48,7 +48,7 @@ public class WordManagerUI extends javax.swing.JFrame {
     
     public WordManagerUI(DictionaryUI parent) {
     this.parent = parent;
-    this.controller = parent.controller;   // dùng chung controller (QUAN TRỌNG!)
+    this.controller = parent.getController();   // dùng chung controller (QUAN TRỌNG!)
 
         initComponents();
         setTitle("Word Manager - Add / Edit / Delete Words");
