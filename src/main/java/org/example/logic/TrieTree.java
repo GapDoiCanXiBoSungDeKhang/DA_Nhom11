@@ -57,25 +57,6 @@ public class TrieTree {
         findAllWordsFromNode(current, prefix, results);
         return results;
     }
-    public List<String> getAllWords() {
-    List<String> result = new ArrayList<>();
-    collectWords(root, "", result);
-    return result;
-}
-
-    private void collectWords(TrieNode node, String prefix, List<String> out) {
-        if (node == null) return;
-
-        if (node.isEndOfWord()) {
-            out.add(prefix);
-        }
-
-        for (Map.Entry<Character, TrieNode> entry : node.getChildren().entrySet()) {
-            char c = entry.getKey();
-            TrieNode child = entry.getValue();
-            collectWords(child, prefix + c, out);
-        }
-    }
 
     /*
      * Phương thức đệ quy (DFS) để thu thập các từ
@@ -96,4 +77,25 @@ public class TrieTree {
             findAllWordsFromNode(child, currentWord + c, results);
         }
     }
+
+    public List<String> getAllWords() {
+        List<String> result = new ArrayList<>();
+        collectWords(root, "", result);
+        return result;
+    }
+
+    private void collectWords(TrieNode node, String prefix, List<String> out) {
+        if (node == null) return;
+
+        if (node.isEndOfWord()) {
+            out.add(prefix);
+        }
+
+        for (Map.Entry<Character, TrieNode> entry : node.getChildren().entrySet()) {
+            char c = entry.getKey();
+            TrieNode child = entry.getValue();
+            collectWords(child, prefix + c, out);
+        }
+    }
+
 }
