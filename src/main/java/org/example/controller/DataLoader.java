@@ -178,12 +178,11 @@ public class DataLoader {
     }
 
     // duyệt theo tiêu chí tìm kiếm các từ đã lưu
-    public List<WordEnglish> loadDataFavourite(Map<String, WordEnglish> words) {
-        List<WordEnglish> favourites = new ArrayList<>();
-
-        for (WordEnglish w : words.values()) {
-            if (w.isFavourite()) {
-                favourites.add(w);
+    public List<String> loadDataFavourite(Map<String, WordEnglish> words) {
+        List<String> favourites = new ArrayList<>();
+        for (Map.Entry<String, WordEnglish> entry : words.entrySet()) {
+            if (entry.getValue().isFavourite()) {
+                favourites.add(entry.getKey());
             }
         }
 
